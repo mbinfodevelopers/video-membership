@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Home</h1>
+{% for item in queryset %}
+    {{ item.id }}-{{ item.email }}<br>
+{% endfor %}
+
+{% endblock %}
