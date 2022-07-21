@@ -18,13 +18,11 @@ def home_view(request):
 def profile_view(request, *args, **kwargs):
     context = {}
     user_id = kwargs.get('user_id')
-    print("kwargs", kwargs)
     try:
         account = Account.objects.get(pk=user_id)
     except:
         return HttpResponse('something went wrong.')
     context = {
-        # 'user': account,
         'user': request.user
     }
     return render(request, 'account/profile.html', context)
