@@ -12,7 +12,7 @@ def home_view(request):
     dic = {
         "queryset": queryset
     }
-    return render(request, "home.html", dic)
+    return render(request, "Shared/index.html", dic)
 
 
 def profile_view(request, *args, **kwargs):
