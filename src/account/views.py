@@ -12,7 +12,8 @@ def home_view(request):
     dic = {
         "queryset": queryset
     }
-    return render(request, "Shared/index.html", dic)
+    return render(request, "shared/index.html", dic)
+
 
 
 def profile_view(request, *args, **kwargs):
@@ -26,6 +27,7 @@ def profile_view(request, *args, **kwargs):
         'user': request.user
     }
     return render(request, 'account/profile.html', context)
+
 
 
 def register_view(request, *args, **kwargs):
@@ -55,6 +57,7 @@ def register_view(request, *args, **kwargs):
     return render(request, "account/register.html", context)
 
 
+
 def login_view(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
@@ -81,10 +84,12 @@ def login_view(request, *args, **kwargs):
     return render(request, "account/login.html", context)
 
 
+
 def logout_view(request):
     print("LOGGING OUT")
     logout(request)
     return redirect("account:home")
+
 
 
 def edit_account_view(request, *args, **kwargs):
