@@ -97,14 +97,14 @@
 
                     <div class="modal-body">
                         <!-- Form Signin -->
-                        <form class="mb-5">
-
+                        <form class="mb-5" method="POST" action="{% url 'account:login' %}">
+                            {% csrf_token %}
                             <!-- Email -->
                             <div class="form-group mb-5">
                                 <label for="modalSigninEmail">
-                                    Username or Email
+                                    Email
                                 </label>
-                                <input type="email" class="form-control" id="modalSigninEmail" placeholder="creativelayers">
+                                <input type="text" name="email" class="form-control" placeholder="creativelayers">
                             </div>
 
                             <!-- Password -->
@@ -112,7 +112,7 @@
                                 <label for="modalSigninPassword">
                                     Password
                                 </label>
-                                <input type="password" class="form-control" id="modalSigninPassword" placeholder="**********">
+                                <input type="password" class="form-control"  name="password" placeholder="**********">
                             </div>
 
                             <div class="d-flex align-items-center mb-5 font-size-sm">
