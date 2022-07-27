@@ -83,22 +83,22 @@
 
                 <div class="modal-body">
                     <!-- Form Signup -->
-                    <form class="mb-5">
+                    <form class="mb-5" method="POST" action="{% url 'account:register' %}">{% csrf_token %}
 
                         <!-- Username -->
                         <div class="form-group mb-5">
                             <label for="modalSignupUsername">
                                 Username
                             </label>
-                            <input type="text" class="form-control" id="modalSignupUsername" placeholder="John">
+                            <input name="username" type="text" class="form-control" placeholder="John">
                         </div>
 
                         <!-- Email -->
                         <div class="form-group mb-5">
                             <label for="modalSignupEmail">
-                                Username or Email
+                                Email
                             </label>
-                            <input type="email" class="form-control" id="modalSignupEmail" placeholder="johndoe@creativelayers.com">
+                            <input type="email" name="email" class="form-control" placeholder="johndoe@creativelayers.com">
                         </div>
 
                         <!-- Password -->
@@ -106,11 +106,19 @@
                             <label for="modalSignupPassword">
                                 Password
                             </label>
-                            <input type="password" class="form-control" id="modalSignupPassword" placeholder="**********">
+                            <input type="password" name="password1" class="form-control" placeholder="**********">
+                        </div>
+
+                        <!-- Password confirmation -->
+                        <div class="form-group mb-5">
+                            <label for="modalSignupPassword">
+                                Repeat Password
+                            </label>
+                            <input type="password" name="password2" class="form-control" placeholder="**********">
                         </div>
 
                         <!-- Submit -->
-                        <button class="btn btn-block btn-primary" type="submit">
+                        <button class="btn btn-block btn-primary" type="submit" value="Register">
                             SIGN UP
                         </button>
 

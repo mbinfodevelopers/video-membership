@@ -62,22 +62,15 @@ def login_view(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
         return redirect("account:home")
-        pass
     if request.POST:
-        print('ok')
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get("email")
             raw_password = form.cleaned_data.get("password")
-            print('email', email)
-            print('password', raw_password)
             user = authenticate(email=email, password=raw_password)
-
             if user:
                 login(request, user)
-                print('hora')
                 return redirect('account:home')
-
     else:
         form = AccountAuthenticationForm()
 
