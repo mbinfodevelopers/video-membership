@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     # own apps
     'account',
+    'course.apps.CourseConfig',
 ]
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.headers.HeadersPanel',
