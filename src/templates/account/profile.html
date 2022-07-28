@@ -9,12 +9,14 @@
 {% block content %}
 
 
-
+<div class="container">
   <h1>Profile</h1>
   {{ user }}<br>
   {{ user.email }}<br>
 
-  <img src="{{ user.profile_image.url }}" alt="">
+  <img src="{{ user.profile_image.url }}" alt="" width="100px" height="100px">
+</div>
+
 
 {% endblock %}
 {% block footer %} {% include 'shared/footer.html' %} {% endblock %}
