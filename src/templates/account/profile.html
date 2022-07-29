@@ -1,11 +1,20 @@
 {% extends 'shared/HomeBase.html' %}
 
+{% block title %}  {% endblock %}
+{% block keyword %} {% endblock keyword %}
+{% block description %} {% endblock description %}
 
+{% block header %} {% include 'shared/header.html' %} {% endblock header %}
+{% block navbar %} {% include 'shared/navbar.html' %} {% endblock navbar %}
 {% block content %}
+
+
+
   <h1>Profile</h1>
   {{ user }}<br>
   {{ user.email }}<br>
 
-  <img src="{{ user.profile_image.url }}" alt="">
+  <img src="{{ user.profile_image.url }}" alt="" width="100px" height="100px">
 
 {% endblock %}
+{% block footer %} {% include 'shared/footer.html' %} {% endblock %}
