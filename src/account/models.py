@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class MyAccountManager(BaseUserManager):
@@ -73,3 +75,24 @@ class Account(AbstractBaseUser):
         # Simplest possible answer: Yes, always
         return True
 
+
+class Teacher(models.Model):
+    teacher = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.teacher.username
+
+
+class Student(models.Model):
+    student = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.student.username
+
+
+# Creating a student model after the account model is created
+@receiver(post_save, sender=Account)
+def create_student_object(sender, instance, created, *args, **kwargs):
+    if not instance.is_admin:
+        student, created = Student.objects.get_or_create(student=instance)
+        student.save()
