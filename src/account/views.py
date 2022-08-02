@@ -7,12 +7,12 @@ from django.conf import settings
 from django.core import files
 
 
-def home_view(request):
-    queryset = Account.objects.all()
-    dic = {
-        "queryset": queryset
-    }
-    return render(request, "shared/index.html", dic)
+# def home_view(request):
+#     queryset = Account.objects.all()
+#     dic = {
+#         "queryset": queryset
+#     }
+#     return render(request, "shared/index.html", dic)
 
 
 
@@ -61,7 +61,7 @@ def register_view(request, *args, **kwargs):
 def login_view(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
-        return redirect("account:home")
+        return redirect("course:all_courses")
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -70,7 +70,7 @@ def login_view(request, *args, **kwargs):
             user = authenticate(email=email, password=raw_password)
             if user:
                 login(request, user)
-                return redirect('account:home')
+                return redirect('course:all_courses')
     else:
         form = AccountAuthenticationForm()
 
@@ -85,7 +85,7 @@ def login_view(request, *args, **kwargs):
 def logout_view(request):
     print("LOGGING OUT")
     logout(request)
-    return redirect("account:home")
+    return redirect("course:all_courses")
 
 
 
@@ -102,7 +102,7 @@ def edit_account_view(request, *args, **kwargs):
             if form.is_valid():
                 form.save()
                 new_username = form.cleaned_data['username']
-                return redirect("account:home")
+                return redirect("course:all_courses")
             else:
                 form = AccountUpdateForm(request.POST, instance=request.user,
                     initial={

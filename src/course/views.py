@@ -3,8 +3,8 @@ from .models import Category, Course
 
 
 def all_courses(request):
-    course = Course.objects.all()
+    courses = Course.objects.filter(is_active=True).order_by('-create_date')
     context = {
-        'course': course
+        'courses': courses
     }
-    return render(request, 'shared/content.html', context)
+    return render(request, 'course/courses.html', context)
