@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def index_homepage(request):
+
+    return render(request, 'course/main.html')

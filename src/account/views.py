@@ -7,12 +7,12 @@ from django.conf import settings
 from django.core import files
 
 
-def home_view(request):
-    queryset = Account.objects.all()
-    dic = {
-        "queryset": queryset
-    }
-    return render(request, "shared/index.html", dic)
+# def home_view(request):
+#     queryset = Account.objects.all()
+#     dic = {
+#         "queryset": queryset
+#     }
+#     return render(request, "shared/index.html", dic)
 
 
 
@@ -78,7 +78,7 @@ def login_view(request, *args, **kwargs):
         "login_form" : form
     }
 
-    return render(request, "shared/index.html", context)
+    return render(request, "", context)
 
 
 
