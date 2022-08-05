@@ -32,7 +32,11 @@
 <body>
 {% block header %} {% include 'base/header.html' %} {% endblock %}
 {% block sidebar %} {% include 'base/sidebar.html' %} {% endblock %}
-{% block content %} {% endblock %}
+<main>
+    {% block content %}
+
+    {% endblock %}
+</main>
 {% block footer %} {% include 'base/footer.html' %} {% endblock %}
 {% include 'base/footer_js.html' %}
 </body>

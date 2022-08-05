@@ -1,20 +1,12 @@
-{% extends 'shared/HomeBase.html' %}
+{% extends 'base.html' %}
 
-{% block title %}  {% endblock %}
-{% block keyword %} {% endblock keyword %}
-{% block description %} {% endblock description %}
-
-{% block header %} {% include 'shared/header.html' %} {% endblock header %}
-{% block navbar %} {% include 'shared/navbar.html' %} {% endblock navbar %}
 {% block content %}
 
-
-
+<section class="feature-course pt-150 pb-130 pt-md-95 pb-md-80 pt-xs-95 pb-xs-8">
   <h1>Profile</h1>
   {{ user }}<br>
   {{ user.email }}<br>
-
   <img src="{{ user.profile_image.url }}" alt="" width="100px" height="100px">
+</section>
 
 {% endblock %}
-{% block footer %} {% include 'shared/footer.html' %} {% endblock %}
