@@ -30,10 +30,10 @@
     <link rel="stylesheet" href="{% static '' %}assets/css/rtl.css">
 </head>
 <body>
-{% block header %} {% endblock %}
-{% block sidebar %} {% endblock %}
+{% block header %} {% include 'base/header.html' %} {% endblock %}
+{% block sidebar %} {% include 'base/sidebar.html' %} {% endblock %}
 {% block content %} {% endblock %}
-{% block footer %} {% endblock %}
-{% include 'all_Shared/footer_js.html' %}
+{% block footer %} {% include 'base/footer.html' %} {% endblock %}
+{% include 'base/footer_js.html' %}
 </body>
 </html>
