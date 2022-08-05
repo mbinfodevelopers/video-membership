@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-2 col-5">
-                        <div class="logo"><a href="index.html"><img src="{% static '' %}assets/img/logo/header_logo_one.svg" alt=""></a></div>
+                        <div class="logo"><a href="{% url 'course:home_view' %}"><img src="{% static '' %}assets/img/logo/header_logo_one.svg" alt=""></a></div>
                     </div>
                     <div class="col-xl-7 col-lg-8 d-none d-lg-block">
                         <nav class="main-menu navbar navbar-expand-lg justify-content-center">
@@ -61,8 +61,6 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="contact.html" id="navbarDropdown5" role="button"  aria-expanded="false">تماس</a></li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="https://www.mellatweb.com/" id="navbarDropdown5" role="button"  aria-expanded="false">خرید قالب</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -72,8 +70,14 @@
                         <div class="right-nav d-flex align-items-center justify-content-end">
                             <div class="right-btn mr-25 mr-xs-15">
                                 <ul class="d-flex align-items-center">
-                                    <li><a href="contact.html" class="theme_btn free_btn">مشاوره رایگان</a></li>
-                                    <li><a class="sign-in ml-20" href="login.html"><img src="{% static '' %}assets/img/icon/user.svg" alt=""></a></li>
+
+                                    {% if user.is_authenticated %}
+                                        <li><a href="{% url 'account:profile' user_id=request.user.id %}" class="theme_btn free_btn">حساب کاربری</a></li>
+                                        <li><a class="user-profile-header"><img src="{{ request.user.profile_image.url }}" alt=""></a></li>
+                                    {% else %}
+                                        <li><a href="{% url 'account:login' %}" class="theme_btn free_btn">حساب کاربری</a></li>
+                                        <li><a class="sign-in ml-20"><img src="{% static '' %}assets/img/icon/user.svg" alt=""></a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
                             <div class="hamburger-menu d-md-inline-block d-lg-none text-right">

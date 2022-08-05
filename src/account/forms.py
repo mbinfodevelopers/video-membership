@@ -29,7 +29,8 @@ class RegistrationForm(UserCreationForm):
 
 
 class AccountAuthenticationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password = forms.CharField(label='Password', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.CharField(label='email', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Account
