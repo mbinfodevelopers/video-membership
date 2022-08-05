@@ -5,7 +5,9 @@ from .models import Account
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Add a valid email address.')
+    # email = forms.EmailField(label='email', widget=forms.TextInput(attrs={'class': 'form-control'}), help_text='Required. Add a valid email address.')
+    # password = forms.CharField(label='Password', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    # username = forms.CharField(label='username', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Account

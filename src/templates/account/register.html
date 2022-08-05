@@ -1,10 +1,60 @@
-{% extends 'shared/HomeBase.html' %}
-
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Register</h1>
-    <form method="post">{% csrf_token %}
-        {{ registration_form }}
-      <input type="submit" value="Register">
-    </form>
+<div class="pt-130">
+ <!--page-title-area start-->
+  <section class="page-title-area d-flex align-items-end" style="background-image: url({% static 'assets/img/page-title-bg/01.jpg' %});">
+      <div class="container">
+          <div class="row align-items-end">
+              <div class="col-lg-12">
+                  <div class="page-title-wrapper mb-50">
+                     <h1 class="page-title mb-25">ثبت نام</h1>
+                     <div class="breadcrumb-list">
+                        <ul class="breadcrumb">
+                            <li><a href="index.html">خانه -</a></li>
+                            <li><a href="#">ورود</a></li>
+                        </ul>
+                     </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--page-title-area end-->
+<!--register-form-area start-->
+<section class="contact-form-area pt-150 pb-120 pt-md-100 pt-xs-100 pb-md-70 pb-xs-70">
+  <div class="container">
+      <div class="row justify-content-center align-items-center">
+          <div class="col-lg-6">
+            <div class="contact-form-wrapper text-center mb-30">
+                <h2 class="mb-45">ایجاد حساب کاربری</h2>
+                <form class="row gx-3 comments-form contact-form" method="POST">
+                    {% csrf_token %}
+                    <div class="col-lg-12 mb-30">
+                        <input type="text" name="username">
+                    </div>
+                    <div class="col-lg-12 mb-30">
+                        <input type="text" name="email">
+                    </div>
+                    <div class="col-lg-12 mb-30">
+                        <input type="password" name="password1" placeholder="******">
+                    </div>
+                    <div class="col-lg-12 mb-30">
+                        <input type="password" name="password2" placeholder="******">
+                    </div>
+                    <input class="theme_btn message_btn mt-20" type="submit" value="ثبت نام">
+                </form>
+                <div class="register-link">
+                    <ul>
+                        <li>قبلا ثبت‌نام کرده‌اید؟ <a href="{% url 'account:login' %}">ورود به سایت</a></li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!--register-form-area end-->
+</div>
 {% endblock %}
