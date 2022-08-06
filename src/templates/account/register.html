@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <div class="pt-130">
  <!--page-title-area start-->
   <section class="page-title-area d-flex align-items-end" style="background-image: url({% static 'assets/img/page-title-bg/01.jpg' %});">
@@ -32,18 +33,18 @@
                 <form class="row gx-3 comments-form contact-form" method="POST">
                     {% csrf_token %}
                     <div class="col-lg-12 mb-30">
-                        <input type="text" name="username">
+                        <input type="text" name="username" id="inputUsername" placeholder="Username" required >
                     </div>
                     <div class="col-lg-12 mb-30">
-                        <input type="text" name="email">
+                        <input type="email" name="email" id="inputEmail" placeholder="Email address" required autofocus>
                     </div>
                     <div class="col-lg-12 mb-30">
-                        <input type="password" name="password1" placeholder="******">
+                        <input type="password" name="password1" id="inputPassword1" placeholder="Password" required>
                     </div>
                     <div class="col-lg-12 mb-30">
-                        <input type="password" name="password2" placeholder="******">
+                        <input type="password" name="password2" id="inputPassword2" placeholder="Confirm password" required>
                     </div>
-                    <input class="theme_btn message_btn mt-20" type="submit" value="ثبت نام">
+                    <button class="theme_btn message_btn mt-20" type="submit">Register</button>
                 </form>
                 <div class="register-link">
                     <ul>

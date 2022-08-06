@@ -33,30 +33,28 @@ def profile_view(request, *args, **kwargs):
 def register_view(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
-        return HttpResponse("You are already authenticate as " + str(user.email))
-    context = {}
+        return HttpResponse("You are already authenticated as " + str(user.email))
 
+    context = {}
     if request.POST:
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             email = form.cleaned_data.get('email').lower()
             raw_password = form.cleaned_data.get('password1')
-            print('email', email)
-            print('raw_password', raw_password)
             account = authenticate(email=email, password=raw_password)
             login(request, account)
-
             destination = kwargs.get("next")
             if destination:
                 return redirect(destination)
             return redirect('course:home_view')
-
         else:
-            form = RegistrationForm()
             context['registration_form'] = form
 
-    return render(request, "account/register.html", context)
+    else:
+        form = RegistrationForm()
+        context['registration_form'] = form
+    return render(request, 'account/register.html', context)
 
 
 
