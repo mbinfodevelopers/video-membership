@@ -1,0 +1,76 @@
+{% load static %}
+{% block sidebar %}
+ <!-- slide-bar start -->
+    <aside class="slide-bar">
+        <div class="close-mobile-menu">
+            <a href="javascript:void(0);"><i class="fas fa-times"></i></a>
+        </div>
+
+        <!-- offset-sidebar start -->
+        <div class="offset-sidebar">
+            <div class="offset-widget offset-logo mb-30">
+                <a href="index.html">
+                    <img src="{% static '' %}assets/img/logo/header_logo_one.svg" alt="logo">
+                </a>
+            </div>
+            <div class="offset-widget mb-40">
+                <div class="info-widget">
+                    <h4 class="offset-title mb-20">درباره ما</h4>
+                    <p class="mb-30">
+                        اما من باید برای شما توضیح دهم که چگونه این همه تصور اشتباه در تقبیح لذت و ستایش درد وجود دارد
+                        متولد شد و به شما گزارش کاملی از سیستم خواهد داد و آموزه های واقعی آن را تشریح خواهد کرد
+                         کاوش عالی
+                    </p>
+                    <a class="theme_btn theme_btn_bg" href="contact.html">تماس</a>
+                </div>
+            </div>
+            <div class="offset-widget mb-30 pr-10">
+                <div class="info-widget info-widget2">
+                    <h4 class="offset-title mb-20">اطلاعات تماس</h4>
+                    <p> <i class="fal fa-address-book"></i> ایران - تبریز</p>
+                    <p> <i class="fal fa-phone"></i> +0989 7876 9865 9 </p>
+                    <p> <i class="fal fa-envelope-open"></i> info@example.com </p>
+                </div>
+            </div>
+        </div>
+        <!-- offset-sidebar end -->
+
+        <!-- side-mobile-menu start -->
+        <nav class="side-mobile-menu">
+            <ul id="mobile-menu-active">
+                <li class="has-dropdown">
+                    <a href="index.html">خانه</a>
+                    <ul class="sub-menu">
+                        <li><a href="index.html">خانه 1</a></li>
+                        <li><a href="index-2.html">خانه 2</a></li>
+                        <li><a href="index-3.html">خانه 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">درباره</a></li>
+                <li class="has-dropdown">
+                    <a href="#">صفحات</a>
+                    <ul class="sub-menu">
+                        <li><a href="courses.html">دوره یک</a></li>
+                        <li><a href="courses-2.html">دوره دو</a></li>
+                        <li><a href="course-details.html">جزئیات دوره ها</a></li>
+                        <li><a href="price.html">قیمت</a></li>
+                        <li><a href="instructor.html">مدرس</a></li>
+                        <li><a href="instructor-profile.html">پروفایل مدرس</a></li>
+                        <li><a href="faq.html">سوالات متداول</a></li>
+                        <li><a href="login.html">ورود</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown"><a href="#">وبلاگ</a>
+                    <ul class="sub-menu">
+                        <li><a href="blog.html">وبلاگ گرید</a></li>
+                        <li><a href="blog-details.html">جزئیات وبلاگ</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">تماس</a></li>
+            </ul>
+        </nav>
+        <!-- side-mobile-menu end -->
+    </aside>
+    <div class="body-overlay"></div>
+    <!-- slide-bar end -->
+{% endblock %}
