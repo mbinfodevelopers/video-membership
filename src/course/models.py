@@ -50,10 +50,15 @@ class Course(models.Model):
         verbose_name = 'دوره',
         verbose_name_plural =' دوره ها'
 
+    @property
+    def count_video(self):
+        return self.video_set.all().count()
+
 
 def get_video_filepath(self, filename):
     course_id = self.course.pk
     return f'videos/{course_id}/{course_id}.mp4'
+
 
 class Video(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True,verbose_name='دوره مرتبط')
