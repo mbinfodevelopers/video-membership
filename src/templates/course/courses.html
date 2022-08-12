@@ -6,8 +6,8 @@
         <div class="row">
            <div class="col-xl-12">
                 <div class="section-title text-center mb-50">
-                    <h5 class="bottom-line mb-25">دوره های ویژه</h5>
-                    <h2>دوره های محبوب ما را کاوش کنید</h2>
+{#                    <h5 class="bottom-line mb-25">دوره های ویژه</h5>#}
+                    <h2>آخرین دوره ها</h2>
                 </div>
             </div>
         </div>
@@ -15,11 +15,9 @@
             <div class="col-xl-12 text-center">
                 <div class="portfolio-menu mb-30">
                     <button class="gf_btn active" data-filter='*'>همه</button>
-                    <button class="gf_btn" data-filter='.cat1'>حرفه</button>
-                    <button class="gf_btn" data-filter='.cat2'>توسعه</button>
-                    <button class="gf_btn" data-filter='.cat3'>تجاری</button>
-                    <button class="gf_btn" data-filter='.cat4'>علم</button>
-                    <button class="gf_btn" data-filter='.cat5'>طرح</button>
+                    {% for category in links %}
+                    <a href="{{ category.get_url }}" class="gf_btn" data-filter='.cat1'>{{ category.category_name }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -28,7 +26,7 @@
             <div class="col-lg-4 col-md-6 grid-item cat2 cat3">
                 <div class="z-gallery mb-30">
                     <div class="z-gallery__thumb mb-20">
-                        <a href="course-details.html"><img class="img-fluid" src="{{course.image.url}}" alt=""></a>
+                        <a href="{{ course.get_url }}"><img class="img-fluid" src="{{course.image.url}}" alt=""></a>
                         <div class="feedback-tag">4.8(256)</div>
                         <div class="heart-icon"><i class="fas fa-heart"></i></div>
                     </div>
@@ -38,7 +36,7 @@
                             <span>آزمون</span>
                             <a class="f-right" href="instructor-details.html"><img src="{% static '' %}assets/img/course/in1.png" alt=""></a>
                         </div>
-                        <h4 class="sub-title mb-20"><a href="course-details.html">{{course.title}}</a></h4>
+                        <h4 class="sub-title mb-20"><a href="{{ course.get_url }}">{{course.title}}</a></h4>
                         <div class="course__meta">
                             <span><img class="icon" src="{% static '' %}assets/img/icon/time.svg" alt="course-meta"> 12 کلاس</span>
                             <span><img class="icon" src="{% static '' %}assets/img/icon/bar-chart.svg" alt="course-meta"> بالاتر</span>
@@ -52,7 +50,7 @@
         </div>
         <div class="row">
              <div class="col-lg-12 mt-20 text-center mb-20 wow fadeInUp2 animated" data-wow-delay='.3s'>
-                <a href="courses.html" class="theme_btn">همه دسته بندی ها</a>
+{#                <a href="" class="theme_btn">همه ی دوره ها</a>#}
             </div>
         </div>
     </div>

@@ -14,17 +14,13 @@
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown mega-menu">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            همه دسته بندی ها
+                                             دسته بندی دوره ها
                                             </a>
                                             <ul class="dropdown-menu submenu mega-menu__sub-menu-box" aria-labelledby="navbarDropdown">
-                                                <li><a href="index.html"><span><img src="{% static '' %}assets/img/icon/icon7.svg" alt=""></span> تجاری</a></li>
-                                                <li><a href="index-2.html"><span><img src="{% static '' %}assets/img/icon/icon8.svg" alt=""></span> فناوری</a></li>
-                                                <li><a href="index.html"><span><img src="{% static '' %}assets/img/icon/icon9.svg" alt=""></span> توسعه</a></li>
-                                                <li><a href="index-2.html"><span><img src="{% static '' %}assets/img/icon/icon10.svg" alt=""></span> عکاسی</a></li>
-                                                <li><a href="index.html"><span><img src="{% static '' %}assets/img/icon/icon11.svg" alt=""></span> بازاریابی</a></li>
-                                                <li><a href="index-2.html"><span><img src="{% static '' %}assets/img/icon/icon12.svg" alt=""></span> برنامه نویسی</a></li>
-                                                <li><a href="index.html"><span><img src="{% static '' %}assets/img/icon/icon14.svg" alt=""></span> فیلمبرداری</a></li>
-                                                <li><a href="index-2.html"><span><img src="{% static '' %}assets/img/icon/icon13.svg" alt=""></span> تصویر</a></li>
+                                            <li><a href="{% url 'all_courses' %}"><span><img src="{% static '' %}assets/img/icon/icon12.svg" alt=""></span> همه ی دوره ها</a></li>
+                                                {% for category in links %}
+                                                <li><a href="{{ category.get_url }}"><span><img src="{% static '' %}assets/img/icon/icon7.svg" alt=""></span> {{ category.category_name }} </a></li>
+                                                {% endfor %}
                                             </ul>
                                         </li>
                                         <li class="nav-item dropdown active">

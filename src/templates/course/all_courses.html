@@ -1,0 +1,57 @@
+{% extends 'base/home.html' %}
+{% load static %}
+{% block content %}
+<main>
+     <!--page-title-area start-->
+      <section class="page-title-area d-flex align-items-end">
+
+
+      </section>
+      <!--page-title-area end-->
+
+       <!-- feature-course start -->
+        <section class="feature-course pt-150 pb-130 pt-md-95 pb-md-80 pt-xs-95 pb-xs-80">
+            <div class="container">
+            <li>تعداد دوره ها ({{ course_count }})</li>
+                <div class="grid row">
+                    {% for course in courses %}
+                    <div class="col-lg-4 col-md-6 grid-item cat2 cat3">
+                        <div class="z-gallery mb-30">
+                            <div class="z-gallery__thumb mb-20">
+                                <a href="{{ course.get_url }}"><img class="img-fluid" src="{{ course.image.url }}" alt=""></a>
+                                <div class="feedback-tag">4.8(256)</div>
+                                <div class="heart-icon"><i class="fas fa-heart"></i></div>
+                            </div>
+                            <div class="z-gallery__content">
+                                <div class="course__tag mb-15">
+                                    <span>علمی</span>
+                                    <span>آزمون</span>
+                                    <a class="f-right" href="instructor-details.html"><img src="{% static '' %}assets/img/course/in1.png" alt=""></a>
+                                </div>
+                                <h4 class="sub-title mb-20"><a href="{{ course.get_url }}">{{course.title}}</a></h4>
+                                <div class="course__meta">
+                                    <span><img class="icon" src="{% static '' %}assets/img/icon/time.svg" alt="course-meta"> 12 کلاس</span>
+                                    <span><img class="icon" src="{% static '' %}assets/img/icon/bar-chart.svg" alt="course-meta"> بالاتر</span>
+                                    <span><img class="icon" src="{% static '' %}assets/img/icon/user.svg" alt="course-meta"> 6395+</span>
+                                    <span>تومان {{course.price }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+
+                </div>
+                <div class="row">
+                     <div class="col-xxl-12 mt-20 text-center mb-20">
+                        <a href="courses.html" class="theme_btn">بیشتر</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- feature-course end -->
+
+    </main>
+
+{% endblock content %}

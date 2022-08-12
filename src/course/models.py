@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from account.models import Account
 from home.models import Category
 
@@ -37,9 +39,17 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+
+        # THIS FUNCTION FOR GET CATEGORY AND PRODUCT URL FROM THE ( SLUG )
+        # ---------------------------------------------------------------
+    def get_url(self):
+        return reverse('course_detail', args=[self.category.slug, self.slug])
+
+
     class Meta:
         verbose_name = 'دوره',
         verbose_name_plural =' دوره ها'
+
 
 def get_video_filepath(self, filename):
     course_id = self.course.pk

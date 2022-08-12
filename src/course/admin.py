@@ -5,9 +5,12 @@ from .models import Course,Video,Comment
 
 class AdminCourse(admin.ModelAdmin):
     list_display = ['title','category','is_active','status','teacher']
+    prepopulated_fields = {'slug':('title',)}
+
 
 class AdminVideo(admin.ModelAdmin):
     list_display = ['title','course','create_date']
+
 
 class AdminComment(admin.ModelAdmin):
     list_display = ['course','comment','status','user_ip','is_active']
