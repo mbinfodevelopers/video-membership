@@ -4,7 +4,7 @@ from .models import Course
 
 
 def all_courses(request, category_slug=None):
-    if category_slug != None:
+    if category_slug is not None:
         categories = get_object_or_404(Category, slug=category_slug)
         courses = Course.objects.filter(category=categories, is_active=True)
         course_count = Course.objects.filter(category=categories).count()
