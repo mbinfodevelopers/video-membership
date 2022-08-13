@@ -52,7 +52,6 @@ class Account(AbstractBaseUser):
     profile_image = models.ImageField(max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)
     hide_email = models.BooleanField(default=True)
 
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = MyAccountManager()
@@ -63,12 +62,10 @@ class Account(AbstractBaseUser):
     def get_profile_image_filename(self):
         return str(self.profile_image)[str(self.profile_image).index('profile_image/' + str(self.pk) + "/"):]
 
-
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always
         return True
-
 
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
@@ -76,8 +73,23 @@ class Account(AbstractBaseUser):
         return True
 
 
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class Teacher(models.Model):
     teacher = models.ForeignKey(Account, on_delete=models.CASCADE)
+    teacher_name = models.CharField(max_length=100, blank=False, null=False)
+    about_teacher = models.TextField(blank=True, null=True)
+    skills = models.ManyToManyField(Skill, blank=True, null=True)
+    linkedin_account = models.URLField(max_length=250, blank=True, null=True)
+    instagram_account = models.URLField(max_length=250, blank=True, null=True)
+    website = models.URLField(max_length=250, blank=True, null=True)
+    twitter_account = models.URLField(max_length=250, blank=True, null=True)
+    stackoverflow_account = models.URLField(max_length=250, blank=True, null=True)
 
     def __str__(self):
         return self.teacher.username
