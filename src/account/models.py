@@ -84,7 +84,7 @@ class Teacher(models.Model):
     teacher = models.ForeignKey(Account, on_delete=models.CASCADE)
     teacher_name = models.CharField(max_length=100, blank=False, null=False)
     about_teacher = models.TextField(blank=True, null=True)
-    skills = models.ManyToManyField(Skill, blank=True, null=True)
+    skills = models.ManyToManyField(Skill, blank=True)
     linkedin_account = models.URLField(max_length=250, blank=True, null=True)
     instagram_account = models.URLField(max_length=250, blank=True, null=True)
     website = models.URLField(max_length=250, blank=True, null=True)
