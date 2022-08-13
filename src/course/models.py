@@ -25,6 +25,7 @@ class Course(models.Model):
     slug = models.SlugField(max_length=200, unique=True,verbose_name=' آدرس اسلاگ ')
     teacher = models.ForeignKey(Account, on_delete=models.CASCADE,verbose_name=' مدرس دوره ')
     description = models.TextField(blank=True, null=True,verbose_name=' توضیحات ')
+    course_content = models.TextField(blank=True, null=True, verbose_name='توضیحات کوتاه')
     price = models.IntegerField(blank=True,null=True,verbose_name='قیمت ')
     image = models.ImageField(upload_to=get_course_image_filepath, blank=True, null=True, default=get_default_course_image,verbose_name='تصویر دوره ')
     status = models.CharField(max_length=25, choices=STATUS, blank=True,verbose_name=' وضعیت ')
