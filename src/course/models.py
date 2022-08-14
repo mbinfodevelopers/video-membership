@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from jalali_date import datetime2jalali, date2jalali
 from account.models import Account
 from home.models import Category
 
@@ -41,15 +41,22 @@ class Course(models.Model):
         return self.title
 
 
-        # THIS FUNCTION FOR GET CATEGORY AND PRODUCT URL FROM THE ( SLUG )
-        # ---------------------------------------------------------------
+        # This Function For Get Category And Course Url
+        # ----------------------------------------------
     def get_url(self):
         return reverse('course_detail', args=[self.category.slug, self.slug])
+
+
+        # This Function For Get Persian date
+        # ----------------------------------
+    def get_persian_date(self):
+        return date2jalali(self.create_date)
 
 
     class Meta:
         verbose_name = 'دوره',
         verbose_name_plural =' دوره ها'
+
 
     @property
     def count_video(self):

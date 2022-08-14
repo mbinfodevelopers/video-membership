@@ -31,7 +31,7 @@
                                 <h4 class="sub-title mb-20"><a href="{{ course.get_url }}">{{course.title}}</a></h4>
                                 <div class="course__meta">
                                     <span><img class="icon" src="{% static '' %}assets/img/icon/time.svg" alt="course-meta"> 12 کلاس</span>
-                                    <span><img class="icon" src="{% static '' %}assets/img/icon/bar-chart.svg" alt="course-meta"> بالاتر</span>
+                                    <span><img class="icon" src="{% static '' %}assets/img/icon/bar-chart.svg" alt="course-meta"> {{ course.get_persian_date }}</span>
                                     <span><img class="icon" src="{% static '' %}assets/img/icon/user.svg" alt="course-meta"> 6395+</span>
                                     <span>تومان {{course.price }}</span>
                                 </div>
