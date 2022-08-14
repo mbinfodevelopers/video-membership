@@ -52,6 +52,14 @@ class Course(models.Model):
     def get_persian_date(self):
         return date2jalali(self.create_date)
 
+        # This Function For spell Price with " , "
+        # ----------------------------------
+    @property
+    def get_price(self):
+        price = self.price
+        convert = format(price,",")
+        return convert
+
 
     class Meta:
         verbose_name = 'دوره',
