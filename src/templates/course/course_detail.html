@@ -2,177 +2,190 @@
 {% load static %}
 
 {% block content %}
-<main>
+<div class="pt-130">
      <!--page-title-area start-->
-      <section class="page-title-area d-flex align-items-end">
-
+      <section class="page-title-area d-flex align-items-end" style="background-image: url({% static 'assets/img/page-title-bg/01.jpg' %});">
+          <div class="container">
+              <div class="row align-items-end">
+                  <div class="col-lg-12">
+                      <div class="page-title-wrapper mb-50">
+                         <h1 class="page-title mb-25">ورود</h1>
+                         <div class="breadcrumb-list">
+                            <ul class="breadcrumb">
+                                <li><a href="index.html">خانه -</a></li>
+                                <li><a href="#">ورود</a></li>
+                            </ul>
+                         </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
       </section>
       <!--page-title-area end-->
-      <!--course-details-area start-->
-      <section class="course-details-area pt-150 pb-120 pt-md-100 pb-md-70 pt-xs-100 pb-xs-70">
-          <div class="container">
-                  <div class="row">
-                      <div class="col-xxl-8 col-xl-7">
-                          <div class="courses-details-wrapper mb-30">
-                              <h2 class="courses-title mb-30">{{ single_course.title }}</h2>
-                              <h5>{{ single_course.description}}</h5>
-                              <div class="course-details-img mb-30" style="background-image: url({% static '' %}assets/img/course/details/01.jpg);">
-                                <div class="video-wrapper">
-                                    <a href="https://www.youtube.com/watch?v=7omGYwdcS04" class="popup-video"><i class="fas fa-play"></i></a>
-                                    </div>
-                                </div>
-                                <div class="courses-tag-btn">
-                                    <a href="#">افزودن به علاقه مندی</a>
-                                    <a href="#">اشتراک گذاری</a>
-                                    <a href="#">هدیه این دوره</a>
-                                </div>
-                          </div>
-                      </div>
-                      <div class="col-xxl-4 col-xl-5">
-                          <div class="learn-area mb-30">
-                              <ul class="cart-list-tag d-sm-inline-flex align-items-center mb-50">
-                                  <li>
-                                      <div class="price-list">
-                                          <h5><span>ت123.65</span> <b class="sub-title">تومان {{ single_course.get_price }}</b></h5>
-                                      </div>
-                                  </li>
-                                  <li>
-                                       <div class="cart-btn">
-                                            <a class="theme_btn" href="#">افزودن به سبد</a>
-                                        </div>
-                                  </li>
-                                  <li>
-                                     <div class="video-wrapper courses-cart-video">
-                                        <a href="https://www.youtube.com/watch?v=7omGYwdcS04" class="popup-video"><i class="fas fa-play"></i></a>
-                                     </div>
-                                  </li>
-                              </ul>
-                              <div class="learn-box">
-                                  <h5>{{ single_course.count_video }} درس ( 3h 36m )</h5>
-                                  <ul class="learn-list">
-                                      <li>
-                                          <a href="https://www.youtube.com/watch?v=7omGYwdcS04">
-                                              <span class="play-video"><img src="{% static '' %}assets/img/icon/video-player.svg" alt="course-list"></span> 01. ویدیوی معرفی <span class="time float-end">4:02</span>
-                                            </a>
-                                        </li>
-                                      <li>
-                                          <a href="https://www.youtube.com/watch?v=7omGYwdcS04">
-                                              <span class="play-video"><i class="fal fa-lock-alt"></i></span> 02. نحوه باز کردن دوربین <span class="time float-end">2:03</span>
-                                          </a>
-                                      </li>
 
-                                  </ul>
-                              </div>
-                          </div>
+    <!--course-details-area start-->
+    <section class="course-details-area pt-150 pb-120 pt-md-100 pb-md-70 pt-xs-100 pb-xs-70">
+      <div class="container">
+              <div class="row">
+                  <div class="col-xxl-8 col-xl-7">
+                      <div class="courses-details-wrapper mb-30">
+                          <h2 class="courses-title mb-30">{{ single_course.title }}</h2>
+                          <h5>{{ single_course.description}}</h5>
+                            <div class="video-wrapper">
+                                <video class="mb-30" width="100%" controls>
+                                    <source src="{{ course_intro.video.url }}" type="video/mp4">
+                                </video>
+                                </div>
+                            <div class="courses-tag-btn">
+                                <a href="#">افزودن به علاقه مندی</a>
+                                <a href="#">اشتراک گذاری</a>
+                                <a href="#">هدیه این دوره</a>
+                            </div>
                       </div>
                   </div>
-                  <div class="row">
-                      <div class="col-xl-6 col-lg-7">
-                          <div class="project-details mb-65">
-                              <h2 class="courses-title mb-30">{{ single_course.title }}</h2>
-                              <p>{{ single_course.description }}
-                              <ul class="seller-rating d-md-inline-flex align-items-center mt-20 mb-10">
-                                  <li>
-                                      <a href="#" class="theme_btn mb-10">پرفروش</a>
-                                  </li>
-                                  <li>
-                                    <div class="star-icon mb-10">
-                                        <a href="#"><i class="fas fa-star"></i></a>
-                                        <a href="#"><i class="fas fa-star"></i></a>
-                                        <a href="#"><i class="fas fa-star"></i></a>
-                                        <a href="#"><i class="fas fa-star"></i></a>
-                                        <a href="#"><i class="fas fa-star"></i></a>
-                                        <a href="#">4.8 ( 256,384)</a>
+                  <div class="col-xxl-4 col-xl-5">
+                      <div class="learn-area mb-30">
+                          <ul class="cart-list-tag d-sm-inline-flex align-items-center mb-50">
+                              <li>
+                                  <div class="price-list">
+                                      <h5><span>ت123.65</span> <b class="sub-title">تومان {{ single_course.get_price }}</b></h5>
+                                  </div>
+                              </li>
+                              <li>
+                                   <div class="cart-btn">
+                                        <a class="theme_btn" href="#">افزودن به سبد</a>
                                     </div>
-                                  </li>
+                              </li>
+                              <li>
+                                 <div class="video-wrapper courses-cart-video">
+                                    <a href="https://www.youtube.com/watch?v=7omGYwdcS04" class="popup-video"><i class="fas fa-play"></i></a>
+                                 </div>
+                              </li>
+                          </ul>
+                          <div class="learn-box">
+                              <h5>{{ single_course.count_video }} درس ( 3h 36m )</h5>
+                              <ul class="learn-list">
                                   <li>
-                                      <h5 class="mb-10">ثبت نام 360,349</h5>
+                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">
+                                          <span class="play-video"><img src="{% static '' %}assets/img/icon/video-player.svg" alt="course-list"></span> 01. ویدیوی معرفی <span class="time float-end">4:02</span>
+                                        </a>
+                                    </li>
+                                  <li>
+                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">
+                                          <span class="play-video"><i class="fal fa-lock-alt"></i></span> 02. نحوه باز کردن دوربین <span class="time float-end">2:03</span>
+                                      </a>
                                   </li>
-                              </ul>
-{#                              <h5 class="mb-25"><span>ایجاد توسط</span> مدیریت</h5>#}
-                              <div class="date-lang">
-                                  <span><b>تاریخ :</b> {{ single_course.get_persian_date}}</span>
 
-                              </div>
-                          </div>
-                          <div class="meet-our-teacher mb-65">
-                               <h2 class="courses-title mb-30">مدرس دوره</h2>
-                               <div class="teachers-content mb-25">
-                                   <img class="teacher_01" src="{% static '' %}assets/img/course/details/teacher.png" alt="">
-                                   <div class="teachers-content__text">
-                                       <h5>{{single_course.teacher}}</h5>
-                                       <p>کارشناس عکاسی</p>
-                                   </div>
-                               </div>
-                               <p class="mb-20">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد..</p>
-                               <p class="mb-20">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-                               <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
-                          </div>
-                          <div class="skill-area">
-                              <h2 class="courses-title mb-35">مهارت های مرتبط</h2>
-                              <div class="courses-tag-btn">
-                                    <a href="#">عکاسی</a>
-                                    <a href="#">بیرون</a>
-                                    <a href="#">عکاسی داخل</a>
-                                    <a href="#">دوربین</a>
-                                    <a href="#">خلاقیت</a>
-                                    <a href="#">دوربین</a>
-                                    <a href="#">حرفه  ای</a>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-5">
-                          <div class="courses-ingredients">
-                              <h2 class="corses-title mb-30">جزئیات دوره</h2>
-                              <p>{{ single_course.description }}</p>
-                              <ul class="courses-item mt-25">
-                                  <li><img src="{% static '' %}assets/img/icon/video.svg" alt="">تعداد ویدیو ها </li>
-                                  <li><img src="{% static '' %}assets/img/icon/newspaper.svg" alt=""> 73 مقاله</li>
-                                  <li><img src="{% static '' %}assets/img/icon/download.svg" alt=""> 650+ منبع قابل دانلود</li>
-                                  <li><img src="{% static '' %}assets/img/icon/infinity.svg" alt=""> دسترسی مادام العمر</li>
-                                  <li><img src="{% static '' %}assets/img/icon/mobile.svg" alt=""> دسترسی به موبایل و تلویزیون یا هر دستگاه دیگری</li>
-                                  <li><img src="{% static '' %}assets/img/icon/certificate-line.svg" alt=""> مدرک اتمام کار</li>
                               </ul>
                           </div>
                       </div>
                   </div>
               </div>
-      </section>
-      <!--course-details-area end-->
-       <!-- feature-course start -->
-       <section class="feature-course pb-130 pt-md-95 pb-md-80 pt-xs-95 pb-xs-80">
-            <div class="container">
-               <h2 class="courses-title mb-35"> آخرین دوره های مدرس</h2>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="z-gallery mb-30">
-                            <div class="z-gallery__thumb mb-20">
-                                <a href="course-details.html"><img class="img-fluid" src="{% static '' %}assets/img/course/01.png" alt=""></a>
-                                <div class="feedback-tag">4.8(256)</div>
-                                <div class="heart-icon"><i class="fas fa-heart"></i></div>
+              <div class="row">
+                  <div class="col-xl-6 col-lg-7">
+                      <div class="project-details mb-65">
+                          <h2 class="courses-title mb-30">{{ single_course.title }}</h2>
+                          <p>{{ single_course.description }}
+                          <ul class="seller-rating d-md-inline-flex align-items-center mt-20 mb-10">
+                              <li>
+                                  <a href="#" class="theme_btn mb-10">پرفروش</a>
+                              </li>
+                              <li>
+                                <div class="star-icon mb-10">
+                                    <a href="#"><i class="fas fa-star"></i></a>
+                                    <a href="#"><i class="fas fa-star"></i></a>
+                                    <a href="#"><i class="fas fa-star"></i></a>
+                                    <a href="#"><i class="fas fa-star"></i></a>
+                                    <a href="#"><i class="fas fa-star"></i></a>
+                                    <a href="#">4.8 ( 256,384)</a>
+                                </div>
+                              </li>
+                              <li>
+                                  <h5 class="mb-10">ثبت نام 360,349</h5>
+                              </li>
+                          </ul>
+    {#                              <h5 class="mb-25"><span>ایجاد توسط</span> مدیریت</h5>#}
+                          <div class="date-lang">
+                              <span><b>تاریخ :</b> {{ single_course.get_persian_date}}</span>
+
+                          </div>
+                      </div>
+                      <div class="meet-our-teacher mb-65">
+                           <h2 class="courses-title mb-30">مدرس دوره</h2>
+                           <div class="teachers-content mb-25">
+                               <img class="teacher_01" src="{% static '' %}assets/img/course/details/teacher.png" alt="">
+                               <div class="teachers-content__text">
+                                   <h5>{{single_course.teacher}}</h5>
+                                   <p>کارشناس عکاسی</p>
+                               </div>
+                           </div>
+                           <p class="mb-20">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد..</p>
+                           <p class="mb-20">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                           <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
+                      </div>
+                      <div class="skill-area">
+                          <h2 class="courses-title mb-35">مهارت های مرتبط</h2>
+                          <div class="courses-tag-btn">
+                                <a href="#">عکاسی</a>
+                                <a href="#">بیرون</a>
+                                <a href="#">عکاسی داخل</a>
+                                <a href="#">دوربین</a>
+                                <a href="#">خلاقیت</a>
+                                <a href="#">دوربین</a>
+                                <a href="#">حرفه  ای</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-5">
+                      <div class="courses-ingredients">
+                          <h2 class="corses-title mb-30">جزئیات دوره</h2>
+                          <p>{{ single_course.description }}</p>
+                          <ul class="courses-item mt-25">
+                              <li><img src="{% static '' %}assets/img/icon/video.svg" alt="">تعداد ویدیو ها </li>
+                              <li><img src="{% static '' %}assets/img/icon/newspaper.svg" alt=""> 73 مقاله</li>
+                              <li><img src="{% static '' %}assets/img/icon/download.svg" alt=""> 650+ منبع قابل دانلود</li>
+                              <li><img src="{% static '' %}assets/img/icon/infinity.svg" alt=""> دسترسی مادام العمر</li>
+                              <li><img src="{% static '' %}assets/img/icon/mobile.svg" alt=""> دسترسی به موبایل و تلویزیون یا هر دستگاه دیگری</li>
+                              <li><img src="{% static '' %}assets/img/icon/certificate-line.svg" alt=""> مدرک اتمام کار</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </section>
+    <!--course-details-area end-->
+    <!-- feature-course start -->
+    <section class="feature-course pb-130 pt-md-95 pb-md-80 pt-xs-95 pb-xs-80">
+        <div class="container">
+           <h2 class="courses-title mb-35"> آخرین دوره های مدرس</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="z-gallery mb-30">
+                        <div class="z-gallery__thumb mb-20">
+                            <a href="course-details.html"><img class="img-fluid" src="{% static '' %}assets/img/course/01.png" alt=""></a>
+                            <div class="feedback-tag">4.8(256)</div>
+                            <div class="heart-icon"><i class="fas fa-heart"></i></div>
+                        </div>
+                        <div class="z-gallery__content">
+                            <div class="course__tag mb-15">
+                                <span>علمی</span>
+                                <span>آزمون</span>
+                                <a class="f-right" href="instructor-details.html"><img src="{% static '' %}assets/img/course/in1.png" alt=""></a>
                             </div>
-                            <div class="z-gallery__content">
-                                <div class="course__tag mb-15">
-                                    <span>علمی</span>
-                                    <span>آزمون</span>
-                                    <a class="f-right" href="instructor-details.html"><img src="{% static '' %}assets/img/course/in1.png" alt=""></a>
-                                </div>
-                                <h4 class="sub-title mb-20"><a href="course-details.html">شغل خود را به سطح بعدی آینده ببرید</a></h4>
-                                <div class="course__meta">
-                                    <span><img class="icon" src="{% static '' %}assets/img/icon/time.svg" alt="course-meta"> 12 کلاس</span>
-                                    <span><img class="icon" src="{% static '' %}assets/img/icon/bar-chart.svg" alt="course-meta"> بالاتر</span>
-                                    <span><img class="icon" src="{% static '' %}assets/img/icon/user.svg" alt="course-meta"> 6395+</span>
-                                    <span>ت260</span>
-                                </div>
+                            <h4 class="sub-title mb-20"><a href="course-details.html">شغل خود را به سطح بعدی آینده ببرید</a></h4>
+                            <div class="course__meta">
+                                <span><img class="icon" src="{% static '' %}assets/img/icon/time.svg" alt="course-meta"> 12 کلاس</span>
+                                <span><img class="icon" src="{% static '' %}assets/img/icon/bar-chart.svg" alt="course-meta"> بالاتر</span>
+                                <span><img class="icon" src="{% static '' %}assets/img/icon/user.svg" alt="course-meta"> 6395+</span>
+                                <span>ت260</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-       </section>
-       <!-- feature-course end -->
-
-
-    </main>
+        </div>
+    </section>
+    <!-- feature-course end -->
+</div>
 
 {% endblock content %}
