@@ -21,43 +21,53 @@ class Course(models.Model):
         ('The course is over', 'The course is over'),
     )
 
-    title = models.CharField(max_length=150, unique=True,verbose_name=' عنوان ')
-    slug = models.SlugField(max_length=200, unique=True,verbose_name=' آدرس اسلاگ ')
-    teacher = models.ForeignKey(Account, on_delete=models.CASCADE,verbose_name=' مدرس دوره ')
-    description = models.TextField(blank=True, null=True,verbose_name=' توضیحات ')
+    title = models.CharField(max_length=150, unique=True, verbose_name=' عنوان ')
+    slug = models.SlugField(max_length=200, unique=True, verbose_name=' آدرس اسلاگ ')
+    teacher = models.ForeignKey(Account, on_delete=models.CASCADE, verbose_name=' مدرس دوره ')
+    description = models.TextField(blank=True, null=True, verbose_name=' توضیحات ')
     course_content = models.TextField(blank=True, null=True, verbose_name='توضیحات کوتاه')
-    price = models.IntegerField(blank=True,null=True,verbose_name='قیمت ')
-    image = models.ImageField(upload_to=get_course_image_filepath, blank=True, null=True, default=get_default_course_image,verbose_name='تصویر دوره ')
-    status = models.CharField(max_length=25, choices=STATUS, blank=True,verbose_name=' وضعیت ')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,verbose_name=' دسته بندی ')
-    create_date = models.DateTimeField(auto_now_add=True,verbose_name=' تاریخ ایجاد ')
-    modify_date = models.DateTimeField(auto_now=True,verbose_name=' تاریخ آپدیت ')
-    view_count = models.IntegerField(blank=True, null=True,verbose_name=' تعداد بازدید')
-    sell_count = models.IntegerField(blank=True, null=True,verbose_name=' تعداد فروش ')
-    is_active = models.BooleanField(default=True,verbose_name='وضعیت فعال بودن دوره')
-    is_free = models.BooleanField(default=True,verbose_name='رایگان ')
+    price = models.IntegerField(blank=True, null=True, verbose_name='قیمت ')
+    image = models.ImageField(upload_to=get_course_image_filepath, blank=True, null=True, default=get_default_course_image, verbose_name='تصویر دوره ')
+    status = models.CharField(max_length=25, choices=STATUS, blank=True, verbose_name=' وضعیت ')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=' دسته بندی ')
+    create_date = models.DateTimeField(auto_now_add=True, verbose_name=' تاریخ ایجاد ')
+    modify_date = models.DateTimeField(auto_now=True, verbose_name=' تاریخ آپدیت ')
+    view_count = models.IntegerField(blank=True, null=True, verbose_name=' تعداد بازدید')
+    sell_count = models.IntegerField(blank=True, null=True, verbose_name=' تعداد فروش ')
+    is_active = models.BooleanField(default=True, verbose_name='وضعیت فعال بودن دوره')
+    is_free = models.BooleanField(default=True, verbose_name='رایگان ')
 
     def __str__(self):
         return self.title
 
+    # Model Save override for upload image
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            saved_image = self.image
+            self.image = None
+            super(Course, self).save(*args, **kwargs)
+            self.image = saved_image
+            if 'force_insert' in kwargs:
+                kwargs.pop('force_insert')
 
-        # This Function For Get Category And Course Url
-        # ----------------------------------------------
+        super(Course, self).save(*args, **kwargs)
+
+
+    # This Function For Get Category And Course Url
     def get_url(self):
         return reverse('course_detail', args=[self.category.slug, self.slug])
 
 
-        # This Function For Get Persian date
-        # ----------------------------------
+    # This Function For Get Persian date
     def get_persian_date(self):
         return date2jalali(self.create_date)
 
-        # This Function For spell Price with " , "
-        # ----------------------------------
+
+    # This Function For spell Price with " , "
     @property
     def get_price(self):
         price = self.price
-        convert = format(price,",")
+        convert = format(price, ",")
         return convert
 
 
@@ -77,13 +87,13 @@ def get_video_filepath(self, filename):
 
 
 class Video(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True,verbose_name='دوره مرتبط')
-    title = models.CharField(max_length=150, unique=True,verbose_name=' عنوان ')
-    description = models.TextField(blank=True, null=True,verbose_name=' توضیحات ')
-    slug = models.SlugField(max_length=200, unique=True,verbose_name=' آدرس اسلاگ ')
-    video = models.FileField(null=True, blank=True, upload_to=get_video_filepath,verbose_name=' ویدیو دوره ')
-    create_date = models.DateTimeField(auto_now_add=True,verbose_name=' تاریخ ایجاد ')
-    modify_date = models.DateTimeField(auto_now=True,verbose_name=' تاریخ آپدیت ')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, verbose_name='دوره مرتبط')
+    title = models.CharField(max_length=150, unique=True, verbose_name=' عنوان ')
+    description = models.TextField(blank=True, null=True, verbose_name=' توضیحات ')
+    slug = models.SlugField(max_length=200, unique=True, verbose_name=' آدرس اسلاگ ')
+    video = models.FileField(null=True, blank=True, upload_to=get_video_filepath, verbose_name=' ویدیو دوره ')
+    create_date = models.DateTimeField(auto_now_add=True, verbose_name=' تاریخ ایجاد ')
+    modify_date = models.DateTimeField(auto_now=True, verbose_name=' تاریخ آپدیت ')
 
     def __str__(self):
         return self.title
@@ -100,14 +110,14 @@ class Comment(models.Model):
         ('close', 'close'),
     )
 
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True,verbose_name=' دوره مرتبط ')
-    comment = models.CharField(max_length=350, null=True, blank=True,verbose_name=' نظرهات ')
-    author_user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True,verbose_name=' کاربر مربوط ')
-    user_ip = models.CharField(max_length=20, blank=True,verbose_name=' آی پی کاربر ')
-    status = models.CharField(max_length=25, choices=STATUS, blank=True,verbose_name=' وضعیت پیام ')
-    create_date = models.DateTimeField(auto_now_add=True,verbose_name=' تاریخ ایجاد ')
-    modify_date = models.DateTimeField(auto_now=True,verbose_name=' تاریخ آپدیت ')
-    is_active = models.BooleanField(default=True,verbose_name=' وضعیت فعال بودن ')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, verbose_name=' دوره مرتبط ')
+    comment = models.CharField(max_length=350, null=True, blank=True, verbose_name=' نظرهات ')
+    author_user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True, verbose_name=' کاربر مربوط ')
+    user_ip = models.CharField(max_length=20, blank=True, verbose_name=' آی پی کاربر ')
+    status = models.CharField(max_length=25, choices=STATUS, blank=True, verbose_name=' وضعیت پیام ')
+    create_date = models.DateTimeField(auto_now_add=True, verbose_name=' تاریخ ایجاد ')
+    modify_date = models.DateTimeField(auto_now=True, verbose_name=' تاریخ آپدیت ')
+    is_active = models.BooleanField(default=True, verbose_name=' وضعیت فعال بودن ')
 
     def __str__(self):
         return self.comment
