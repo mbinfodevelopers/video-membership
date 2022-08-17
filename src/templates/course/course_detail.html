@@ -30,11 +30,12 @@
                   <div class="col-xxl-8 col-xl-7">
                       <div class="courses-details-wrapper mb-30">
                           <h2 class="courses-title mb-30">{{ single_course.title }}</h2>
-                          <h5>{{ single_course.description}}</h5>
+                          <h5 class="video-title"></h5>
                             <div class="video-wrapper">
-                                <video class="mb-30" width="100%" controls>
-                                    <source src="{{ course_intro.video.url }}" type="video/mp4">
-                                </video>
+                                <video controls id="main-Video" width="100%" src="{{ course_intro.video.url }}" type="video/mp4"></video>
+{#                                <video class="mb-30" width="100%" controls>#}
+{#                                    <source src="{{ course_intro.video.url }}" type="video/mp4">#}
+{#                                </video>#}
                                 </div>
                             <div class="courses-tag-btn">
                                 <a href="#">افزودن به علاقه مندی</a>
@@ -64,19 +65,21 @@
                           </ul>
                           <div class="learn-box">
                               <h5>{{ single_course.count_video }} درس ( 3h 36m )</h5>
-                              <ul class="learn-list">
-                                  <li>
-                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">
-                                          <span class="play-video"><img src="{% static '' %}assets/img/icon/video-player.svg" alt="course-list"></span> 01. ویدیوی معرفی <span class="time float-end">4:02</span>
-                                        </a>
-                                    </li>
-                                  <li>
-                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">
-                                          <span class="play-video"><i class="fal fa-lock-alt"></i></span> 02. نحوه باز کردن دوربین <span class="time float-end">2:03</span>
-                                      </a>
-                                  </li>
-
-                              </ul>
+                                <span class="AllLessons"></span>
+                              <ul class="playlist" id="playlist"></ul>
+{#                              <ul class="learn-list">#}
+{#                                  <li>#}
+{#                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">#}
+{#                                          <span class="play-video"><img src="{% static '' %}assets/img/icon/video-player.svg" alt="course-list"></span> 01. ویدیوی معرفی <span class="time float-end">4:02</span>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                  <li>#}
+{#                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">#}
+{#                                          <span class="play-video"><i class="fal fa-lock-alt"></i></span> 02. نحوه باز کردن دوربین <span class="time float-end">2:03</span>#}
+{#                                      </a>#}
+{#                                  </li>#}
+{##}
+{#                              </ul>#}
                           </div>
                       </div>
                   </div>
@@ -188,4 +191,9 @@
     <!-- feature-course end -->
 </div>
 
+<script src='{% static "main/video-list.js" %}'></script>
+<script src='{% static "main/video-gallery-script.js" %}'></script>
+    <script>
+    console.log('salam');
+    </script>
 {% endblock content %}
