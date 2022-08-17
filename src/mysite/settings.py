@@ -31,9 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'rest_framework',
+    'jalali_date',
 
     # own apps
-    'jalali_date',
     'account',
     'course.apps.CourseConfig',
     'home.apps.HomeConfig',

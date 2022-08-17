@@ -10,8 +10,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('account.urls')),
     path('courses/', include('course.urls')),
-    path('',include('home.urls')),
+    path('', include('home.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
+
+
+    # api urls
+    path('course_api/', include('course.api.urls')),
 
 
 # Password reset links (ref: https://github.com/django/django/blob/master/django/contrib/auth/views.py)
