@@ -4957,6 +4957,8 @@ input.main-search-input:-ms-input-placeholder {
   border-bottom: 1px solid rgba(164, 157, 157, 0.2);
   padding-bottom: 20px;
   margin-bottom: 20px;
+  position: relative;
+    height: 100%;
 }
 
 .learn-list {

@@ -2,12 +2,12 @@
 const mainVideo = document.querySelector('#main-Video');
 const musicList = document.querySelector('.music-list');
 const playlist = document.getElementById('playlist');
-const AllLessons = document.querySelector('.AllLessons');
+// const AllLessons = document.querySelector('.AllLessons');
 const videoTitle = document.querySelector('.video-title');
 
 
-const ulTag = document.querySelector("ul");
-AllLessons.innerHTML = `${allVideos.length} Lessons`
+const ulTag = document.querySelector("ul.video-ul");
+// AllLessons.innerHTML = `${allVideos.length} Lessons`
 
 
 let musicIndex = 1;
@@ -24,7 +24,7 @@ function loadMusic(indexNumb){
    videoTitle.innerHTML = `${indexNumb}. ${allVideos[indexNumb - 1].name}`
 
 }
-
+console.log('allVideos.length', allVideos.length)
 for(let i = 0; i < allVideos.length; i++){
    let liTag = `<li li-index="${i + 1}">
       <div class="row">
@@ -33,6 +33,7 @@ for(let i = 0; i < allVideos.length; i++){
       <video class="${allVideos[i].id}" src="${allVideos[i].src}" style="display: none;" title="${allVideos[i].name}"></video>
       <span id="${allVideos[i].id}" class="duration"></span>
    </li>`;
+   console.log('li tag', liTag)
    playlist.insertAdjacentHTML('beforeend',liTag);
 
    let liVideoDuration = ulTag.querySelector(`#${allVideos[i].id}`)
