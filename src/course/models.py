@@ -90,6 +90,7 @@ class Video(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, verbose_name='دوره مرتبط')
     title = models.CharField(max_length=150, unique=True, verbose_name=' عنوان ')
     description = models.TextField(blank=True, null=True, verbose_name=' توضیحات ')
+    duration_video = models.CharField(max_length=20,null=True,verbose_name='تایم ویدیو')
     slug = models.SlugField(max_length=200, unique=True, verbose_name=' آدرس اسلاگ ')
     video = models.FileField(null=True, blank=True, upload_to=get_video_filepath, verbose_name=' ویدیو دوره ')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name=' تاریخ ایجاد ')
