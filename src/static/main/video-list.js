@@ -12,61 +12,61 @@ let allVideos = [
    {
       name: "Confirm Password using Html CSS & js",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_3"
+      id: "3"
    },
    {
       name: "Creative Card Hover Effect",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_4"
+      id: "4"
    },
    {
       name: "Creative Digital Clock Ui Design",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_5"
+      id: "5"
    },
    {
       name: "Creative Our Team Section",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_6"
+      id: "6"
    },
    {
       name: "Filter Text Animation Using Html and CSS",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_7"
+      id: "7"
    },
    {
       name: "Glassmorphism Calculater New Design",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_8"
+      id: "8"
    },
    {
       name: "How To  Make Cheatsheet",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_9"
+      id: "9"
    },
    {
       name: "How to create Login Form",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_10"
+      id: "10"
    },
    {
       name: "How To Make Animated Menu Icon",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_11"
+      id: "11"
    },
    {
       name: "How to make Read More Function",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_12"
+      id: "12"
    },
    {
       name: "Vertical Navigation Bar",
       src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-      id: "vid_13"
+      id: "13"
    },
     {
    name: "Vertical Navigation Bar",
    src: "http://127.0.0.1:8000/media/videos/1/1_HydKkE6.mp4",
-   id: "vid_14"
+   id: "14"
 }
 ]

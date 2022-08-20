@@ -2,12 +2,33 @@
 const mainVideo = document.querySelector('#main-Video');
 const musicList = document.querySelector('.music-list');
 const playlist = document.getElementById('playlist');
-// const AllLessons = document.querySelector('.AllLessons');
 const videoTitle = document.querySelector('.video-title');
 
 
+const api_url =
+      "http://127.0.0.1:8000/course_api/video_list/programming/django/";
+
+// Defining async function
+async function getapi(url) {
+
+    // Storing response
+    const response = await fetch(url);
+
+    // Storing data in form of JSON
+    var data = await response.json();
+    console.log('inja', data);
+    if (response) {
+        hideloader();
+    }
+    show(data);
+}
+// Calling that async function
+getapi(api_url);
+console.log('getapi(api_url);', getapi(api_url))
+
+// console.log('allvideos', allVideos)
+
 const ulTag = document.querySelector("ul.video-ul");
-// AllLessons.innerHTML = `${allVideos.length} Lessons`
 
 
 let musicIndex = 1;
@@ -21,23 +42,25 @@ function playMusic(){
 }
 function loadMusic(indexNumb){
    mainVideo.src = `${allVideos[indexNumb - 1].src}`;
-   videoTitle.innerHTML = `${indexNumb}. ${allVideos[indexNumb - 1].name}`
+   videoTitle.innerHTML = `${indexNumb}. ${allVideos[indexNumb - 1].title}`
 
 }
-console.log('allVideos.length', allVideos.length)
+
 for(let i = 0; i < allVideos.length; i++){
    let liTag = `<li li-index="${i + 1}">
       <div class="row">
-         <span>${i + 1}. ${allVideos[i].name}</span>
+         <span>${i + 1}. ${allVideos[i].title}</span>
       </div>
-      <video class="${allVideos[i].id}" src="${allVideos[i].src}" style="display: none;" title="${allVideos[i].name}"></video>
+      <video class="${allVideos[i].id}" src="${allVideos[i].src}" style="display: none;" title="${allVideos[i].title}"></video>
       <span id="${allVideos[i].id}" class="duration"></span>
    </li>`;
-   console.log('li tag', liTag)
    playlist.insertAdjacentHTML('beforeend',liTag);
 
    let liVideoDuration = ulTag.querySelector(`#${allVideos[i].id}`)
    let liVideoTag = ulTag.querySelector(`.${allVideos[i].id}`);
+
+   console.log('liVideoDuration', liVideoDuration)
+
 
 
    liVideoTag.addEventListener("loadeddata", ()=>{
