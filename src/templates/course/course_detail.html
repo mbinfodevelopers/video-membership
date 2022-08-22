@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="pt-130">
+<div class="container-video">
      <!--page-title-area start-->
       <section class="page-title-area d-flex align-items-end" style="background-image: url({% static 'assets/img/page-title-bg/01.jpg' %});">
           <div class="container">
@@ -31,11 +32,14 @@
                       <div class="courses-details-wrapper mb-30">
                           <h2 class="courses-title mb-30">{{ single_course.title }}</h2>
                           <h5>{{ single_course.description}}</h5>
-                            <div class="video-wrapper">
-                                <video class="mb-30" width="100%" controls>
+
+                            <div class="main-video">
+                                <video class="video" width="100%" controls muted autoplay>
                                     <source src="{{ course_intro.video.url }}" type="video/mp4">
+                                    <h3 class="title-vid">01. video title goes here</h3>
                                 </video>
-                                </div>
+                            </div>
+
                             <div class="courses-tag-btn">
                                 <a href="#">افزودن به علاقه مندی</a>
                                 <a href="#">اشتراک گذاری</a>
@@ -57,26 +61,59 @@
                                     </div>
                               </li>
                               <li>
-                                 <div class="video-wrapper courses-cart-video">
+                                 <div class="main-video">
                                     <a href="https://www.youtube.com/watch?v=7omGYwdcS04" class="popup-video"><i class="fas fa-play"></i></a>
                                  </div>
                               </li>
                           </ul>
                           <div class="learn-box">
                               <h5>{{ single_course.count_video }} درس ( 3h 36m )</h5>
-                              <ul class="learn-list">
-                                  <li>
-                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">
-                                          <span class="play-video"><img src="{% static '' %}assets/img/icon/video-player.svg" alt="course-list"></span> 01. ویدیوی معرفی <span class="time float-end">4:02</span>
-                                        </a>
-                                    </li>
-                                  <li>
-                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">
-                                          <span class="play-video"><i class="fal fa-lock-alt"></i></span> 02. نحوه باز کردن دوربین <span class="time float-end">2:03</span>
-                                      </a>
-                                  </li>
 
-                              </ul>
+                              <div class="video-list">
+                                <div class="vid active">
+                                    <video src="{{ course_intro.video.url }}" muted></video>
+                                    <h3 class="title-vid">01. video title goes here</h3>
+                                </div>
+                                <div class="vid">
+                                    <video src="{{ course_intro.video.url }}" muted></video>
+                                    <h3 class="title-vid">02. video title goes here</h3>
+                                </div>
+                                <div class="vid">
+                                    <video src="{{ course_intro.video.url }}" muted></video>
+                                    <h3 class="title-vid">03. video title goes here</h3>
+                                </div>
+                                <div class="vid">
+                                    <video src="{{ course_intro.video.url }}" muted></video>
+                                    <h3 class="title-vid">04. video title goes here</h3>
+                                </div>
+                                <div class="vid">
+                                    <video src="{{ course_intro.video.url }}" muted></video>
+                                    <h3 class="title-vid">05. video title goes here</h3>
+                                </div>
+                                <div class="vid">
+                                    <video src="{{ course_intro.video.url }}" muted></video>
+                                    <h3 class="title-vid">06. video title goes here</h3>
+                                </div>
+                                <div class="vid">
+                                    <video src="{{ course_intro.video.url }}" muted></video>
+                                    <h3 class="title-vid">07. video title goes here</h3>
+                                </div>
+                              </div>
+
+
+{#                              <ul class="learn-list">#}
+{#                                  <li>#}
+{#                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">#}
+{#                                          <span class="play-video"><img src="{% static '' %}assets/img/icon/video-player.svg" alt="course-list"></span> 01. ویدیوی معرفی <span class="time float-end">4:02</span>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                  <li>#}
+{#                                      <a href="https://www.youtube.com/watch?v=7omGYwdcS04">#}
+{#                                          <span class="play-video"><i class="fal fa-lock-alt"></i></span> 02. نحوه باز کردن دوربین <span class="time float-end">2:03</span>#}
+{#                                      </a>#}
+{#                                  </li>#}
+{##}
+{#                              </ul>#}
                           </div>
                       </div>
                   </div>
@@ -187,5 +224,24 @@
     </section>
     <!-- feature-course end -->
 </div>
+</div>
+<script>
+let listVideo = document.querySelectorAll('.video-list .vid')
+let mainVideo = document.querySelector('.main-video video')
+let title = document.querySelector('.main-video .title-vid')
+
+listVideo.forEach(video =>{
+    video.onclick = () => {
+        listVideo.forEach(vid => vid.classList.remove('active'));
+        video.classList.add('active');
+        if(video.classList.contains('active')){
+            let src = video.children[0].getAttribute('src');
+            mainVideo.src = src;
+            let text = video.children[1].innerHTML;
+            title.innerHTML = text;
+        };
+    };
+});
+</script>
 
 {% endblock content %}
