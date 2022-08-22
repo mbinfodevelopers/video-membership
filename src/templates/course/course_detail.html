@@ -32,11 +32,11 @@
                       <div class="courses-details-wrapper mb-30">
                           <h2 class="courses-title mb-30">{{ single_course.title }}</h2>
                           <h5>{{ single_course.description}}</h5>
-
+                            <h3 class="title-vid">01. video title goes here</h3>
                             <div class="main-video">
                                 <video class="video" width="100%" controls muted autoplay>
                                     <source src="{{ course_intro.video.url }}" type="video/mp4">
-                                    <h3 class="title-vid">01. video title goes here</h3>
+
                                 </video>
                             </div>
 
@@ -228,7 +228,7 @@
 <script>
 let listVideo = document.querySelectorAll('.video-list .vid')
 let mainVideo = document.querySelector('.main-video video')
-let title = document.querySelector('.main-video .title-vid')
+let title = document.querySelector('.title-vid')
 
 listVideo.forEach(video =>{
     video.onclick = () => {
