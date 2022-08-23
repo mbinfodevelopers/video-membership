@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'account',
     'course.apps.CourseConfig',
     'home.apps.HomeConfig',
+    'order.apps.OrderConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 # default settings
