@@ -90,7 +90,7 @@ class Course(models.Model):
         if videos:
             for video in videos:
                 videos_second += cal_time_to_seconds(video.duration_video)
-            result = time.strftime('%Hساعت:%Mدقیقه:%Sثانیه', time.gmtime(videos_second))
+            result = time.strftime('%H:%M:%S', time.gmtime(videos_second))
             return result
         else:
             return None
