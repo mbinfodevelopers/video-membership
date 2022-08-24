@@ -3,6 +3,8 @@ from django.urls import reverse
 from jalali_date import datetime2jalali, date2jalali
 from account.models import Account
 from home.models import Category
+from .utils import cal_time_to_seconds
+import time
 
 
 def get_course_image_filepath(self, filename):
@@ -81,6 +83,19 @@ class Course(models.Model):
         return self.video_set.all().count()
 
 
+    @property
+    def videos_duration_sum(self):
+        videos = self.video_set.all()
+        videos_second = 0
+        if videos:
+            for video in videos:
+                videos_second += cal_time_to_seconds(video.duration_video)
+            result = time.strftime('%Hساعت:%Mدقیقه:%Sثانیه', time.gmtime(videos_second))
+            return result
+        else:
+            return None
+
+
 def get_video_filepath(self, filename):
     course_id = self.course.pk
     return f'videos/{course_id}/{course_id}.mp4'
@@ -90,6 +105,7 @@ class Video(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, verbose_name='دوره مرتبط')
     title = models.CharField(max_length=150, unique=True, verbose_name=' عنوان ')
     description = models.TextField(blank=True, null=True, verbose_name=' توضیحات ')
+    duration_video = models.CharField(max_length=20,null=True,verbose_name='تایم ویدیو')
     slug = models.SlugField(max_length=200, unique=True, verbose_name=' آدرس اسلاگ ')
     video = models.FileField(null=True, blank=True, upload_to=get_video_filepath, verbose_name=' ویدیو دوره ')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name=' تاریخ ایجاد ')
