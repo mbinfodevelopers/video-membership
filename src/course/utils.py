@@ -1,13 +1,11 @@
-from .models import Course
 
-def calculate_time(self):
-    get_time = Course.objects.filter(video__duration_video=self)
-    time = get_time % (24 * 1440)
-    hour = time // 1440
-    time %= 1400
-    minute = time // 60
-    time %= 60
-    seconds = time
-    result = ("h:m:s  %d:%d:%d" % (hour, minute, seconds))
-    return result
 
+def cal_time_to_seconds(time):
+    # example of time '00,00,00'
+
+    split_time = time.split(',')
+    hour = int(split_time[0]) * 60 * 60
+    minute = int(split_time[1]) * 60
+    seconds_sum = hour + minute + int(split_time[2])
+
+    return seconds_sum

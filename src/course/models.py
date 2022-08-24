@@ -3,6 +3,8 @@ from django.urls import reverse
 from jalali_date import datetime2jalali, date2jalali
 from account.models import Account
 from home.models import Category
+from .utils import cal_time_to_seconds
+import time
 
 
 def get_course_image_filepath(self, filename):
@@ -79,6 +81,19 @@ class Course(models.Model):
     @property
     def count_video(self):
         return self.video_set.all().count()
+
+
+    @property
+    def videos_duration_sum(self):
+        videos = self.video_set.all()
+        videos_second = 0
+        if videos:
+            for video in videos:
+                videos_second += cal_time_to_seconds(video.duration_video)
+            result = time.strftime('%Hساعت:%Mدقیقه:%Sثانیه', time.gmtime(videos_second))
+            return result
+        else:
+            return None
 
 
 def get_video_filepath(self, filename):
