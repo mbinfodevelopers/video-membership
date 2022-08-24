@@ -35,7 +35,7 @@ class Order(models.Model):
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='سفارش مربوط')
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='نوع پرداخت ')
-    user = models.ForeignKey(Account, on_delete=models.CASCADE, verbose_name='یوز سفارش دهنده')
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, verbose_name='کاربر سفارش دهنده')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='دوره مورد نظر')
     product_price = models.IntegerField(verbose_name='قیمت محصول')
     order_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ سفارش محصول')
