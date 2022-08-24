@@ -70,36 +70,15 @@
                               <h5>{{ single_course.count_video }} درس ( 3h 36m )</h5>
 
                               <div class="video-list">
-                                <div class="vid active">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">01. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">02. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">03. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">04. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">05. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">06. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">07. video title goes here</h3>
-                                </div>
-                              </div>
+                                  {% for video_item in course_videos %}
 
+                                    <div class="vid">
+                                        <video src="{{ video_item.video.url }}" muted></video>
+                                        <h6 class="title-vid">{{ video_item.title }}</h6>
+                                    </div>
+
+                                  {% endfor %}
+                              </div>
 
 {#                              <ul class="learn-list">#}
 {#                                  <li>#}
