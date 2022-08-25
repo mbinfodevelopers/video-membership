@@ -55,7 +55,8 @@
 .container-video .video-list {
     background: #fff;
     border-radius: 5px;
-    height: 520px;
+    /*border-bottom: 1px solid #1a1e21;*/
+    height: 370px;
     overflow-y: scroll;
 }
 .container-video .video-list::-webkit-scrollbar {
@@ -71,7 +72,7 @@
 }
 
 .container-video .video-list .vid video {
-    width: 100px;
+    width: 70px;
     border-radius: 5px;
 }
 
@@ -92,7 +93,7 @@
 }
 
 .container-video .video-list .vid.active {
-    background: #2980b9;
+    background: #8dcaf2;
 }
 
 .container-video .video-list .vid.active .title {
@@ -101,6 +102,11 @@
 
 .container-video .video-list .vid .title {
     color: #333;
-    font-size: 17px;
+    font-size: 10px;
 
+}
+
+.container .title-vid {
+    font-size: 15px;
+    margin-right: 20px;
 }

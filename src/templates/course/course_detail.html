@@ -32,11 +32,11 @@
                       <div class="courses-details-wrapper mb-30">
                           <h2 class="courses-title mb-30">{{ single_course.title }}</h2>
                           <h5>{{ single_course.description}}</h5>
-
+                            <h3 class="title-vid">01. video title goes here</h3>
                             <div class="main-video">
-                                <video class="video" width="100%" controls muted autoplay>
+                                <video class="video" width="100%" controls autoplay>
                                     <source src="{{ course_intro.video.url }}" type="video/mp4">
-                                    <h3 class="title-vid">01. video title goes here</h3>
+
                                 </video>
                             </div>
 
@@ -70,36 +70,15 @@
                               <h5><span>{{ single_course.count_video }} درس</span><span>({{ single_course.videos_duration_sum }})</span></h5>
 
                               <div class="video-list">
-                                <div class="vid active">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">01. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">02. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">03. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">04. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">05. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">06. video title goes here</h3>
-                                </div>
-                                <div class="vid">
-                                    <video src="{{ course_intro.video.url }}" muted></video>
-                                    <h3 class="title-vid">07. video title goes here</h3>
-                                </div>
-                              </div>
+                                  {% for video_item in course_videos %}
 
+                                    <div class="vid">
+                                        <video src="{{ video_item.video.url }}" muted></video>
+                                        <h6 class="title-vid">{{ video_item.title }}</h6>
+                                    </div>
+
+                                  {% endfor %}
+                              </div>
 
 {#                              <ul class="learn-list">#}
 {#                                  <li>#}
@@ -228,7 +207,11 @@
 <script>
 let listVideo = document.querySelectorAll('.video-list .vid')
 let mainVideo = document.querySelector('.main-video video')
-let title = document.querySelector('.main-video .title-vid')
+let title = document.querySelector('.title-vid')
+
+$(document).ready(function() {
+  $('.video-list div:first').addClass('active');
+});
 
 listVideo.forEach(video =>{
     video.onclick = () => {
