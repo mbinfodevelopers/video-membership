@@ -4955,8 +4955,8 @@ input.main-search-input:-ms-input-placeholder {
   color: #1B212F;
   font-size: 20px;
   border-bottom: 1px solid rgba(164, 157, 157, 0.2);
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .learn-list {
