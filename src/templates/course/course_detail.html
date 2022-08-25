@@ -34,7 +34,7 @@
                           <h5>{{ single_course.description}}</h5>
                             <h3 class="title-vid">01. video title goes here</h3>
                             <div class="main-video">
-                                <video class="video" width="100%" controls muted autoplay>
+                                <video class="video" width="100%" controls autoplay>
                                     <source src="{{ course_intro.video.url }}" type="video/mp4">
 
                                 </video>
@@ -208,6 +208,10 @@
 let listVideo = document.querySelectorAll('.video-list .vid')
 let mainVideo = document.querySelector('.main-video video')
 let title = document.querySelector('.title-vid')
+
+$(document).ready(function() {
+  $('.video-list div:first').addClass('active');
+});
 
 listVideo.forEach(video =>{
     video.onclick = () => {
