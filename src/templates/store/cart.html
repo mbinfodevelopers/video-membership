@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="feature-course pt-150 pb-130 pt-md-95 pb-md-80 pt-xs-95 pb-xs-8">
+    <h1>Cart</h1>
+    {% for item in items %}
+        <img width="100px" height="100px" src="{{ item.course.image.url }}">
+        {{ item.course.title }}
+        {{ item.course.price }}
+        {{ item.get_total }}
+        <p>---------------------</p>
+    {% endfor %}
+    <br>
+    <a class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+</section>
+
+{% endblock %}
