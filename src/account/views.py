@@ -61,7 +61,7 @@ def register_view(request, *args, **kwargs):
 def login_view(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
-        return redirect("course:home_view")
+        return redirect("course:courses")
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -70,7 +70,7 @@ def login_view(request, *args, **kwargs):
             user = authenticate(email=email, password=raw_password)
             if user:
                 login(request, user)
-                return redirect('course:home_view')
+                return redirect('course:courses')
     else:
         form = AccountAuthenticationForm()
 
@@ -83,7 +83,7 @@ def login_view(request, *args, **kwargs):
 
 def logout_view(request):
     logout(request)
-    return redirect("course:home_view")
+    return redirect("course:courses")
 
 
 def edit_account_view(request, *args, **kwargs):
@@ -99,7 +99,7 @@ def edit_account_view(request, *args, **kwargs):
             if form.is_valid():
                 form.save()
                 new_username = form.cleaned_data['username']
-                return redirect("course:home_view")
+                return redirect("course:courses")
             else:
                 form = AccountUpdateForm(request.POST, instance=request.user,
                     initial={
