@@ -19,4 +19,4 @@ class Category(models.Model):
     #FOR GET SLUG URL CATEGORIES
     #__________________________
     def get_url(self):
-        return reverse('course_by_category',args=[self.slug])
+        return reverse('course:course_by_category',args=[self.slug])

@@ -57,7 +57,8 @@
                               </li>
                               <li>
                                    <div class="cart-btn">
-                                        <a class="theme_btn" href="#">افزودن به سبد</a>
+{#                                        <a class="theme_btn" href="#">افزودن به سبد</a>#}
+                                       <button data-course="{{ single_course.id }}" data-action="add" class="update-cart btn btn-outline-secondary add-btn">افزودن به سبد</button>
                                     </div>
                               </li>
                               <li>
@@ -204,27 +205,6 @@
     <!-- feature-course end -->
 </div>
 </div>
-<script>
-let listVideo = document.querySelectorAll('.video-list .vid')
-let mainVideo = document.querySelector('.main-video video')
-let title = document.querySelector('.title-vid')
-
-$(document).ready(function() {
-  $('.video-list div:first').addClass('active');
-});
-
-listVideo.forEach(video =>{
-    video.onclick = () => {
-        listVideo.forEach(vid => vid.classList.remove('active'));
-        video.classList.add('active');
-        if(video.classList.contains('active')){
-            let src = video.children[0].getAttribute('src');
-            mainVideo.src = src;
-            let text = video.children[1].innerHTML;
-            title.innerHTML = text;
-        };
-    };
-});
-</script>
-
+<script src="{% static 'main/js/video-gallery.js' %}" type="text/javascript"></script>
+<script src="{% static 'main/js/cart.js' %}" type="text/javascript"></script>
 {% endblock content %}
