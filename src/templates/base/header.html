@@ -19,7 +19,7 @@
                                             <ul class="dropdown-menu submenu mega-menu__sub-menu-box" aria-labelledby="navbarDropdown">
                                             <li><a href="{% url 'course:courses' %}"><span><img src="{% static '' %}assets/img/icon/icon12.svg" alt=""></span> همه ی دوره ها</a></li>
                                                 {% for category in links %}
-                                                <li><a href="{{ 'course:category.get_url' }}"><span><img src="{% static '' %}assets/img/icon/icon7.svg" alt=""></span> {{ category.category_name }} </a></li>
+                                                <li><a href="{{ category.get_url }}"><span><img src="{% static '' %}assets/img/icon/icon7.svg" alt=""></span> {{ category.category_name }} </a></li>
                                                 {% endfor %}
                                             </ul>
                                         </li>
@@ -74,7 +74,7 @@
                                         <li><a href="{% url 'account:login' %}" class="theme_btn free_btn">حساب کاربری</a></li>
 {#                                        <li><a class="sign-in ml-20"><img src="{% static '' %}assets/img/icon/user.svg" alt=""></a></li>#}
                                     {% endif %}
-                                    <li><a class="ml-20"><img width="50ox" height="50px" src="{% static '' %}assets/img/icon/cart.png" alt=""></a></li>
+                                    <li><a href="{% url 'order:cart' %}" class="ml-20"><img width="50ox" height="50px" src="{% static '' %}assets/img/icon/cart.png" alt=""></a></li>
                                     <p id="cart-total">0</p>
                                 </ul>
                             </div>

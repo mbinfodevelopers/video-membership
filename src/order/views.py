@@ -17,7 +17,7 @@ def order(request):
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         cartItems = order['get_cart_items']
 
-    # fix later
+    # fix later number of cart items
     print('cartItems', cartItems)
 
 
@@ -50,7 +50,6 @@ def checkout(request):
     if request.user.is_authenticated:
         current_user = request.user
         order, created = Order.objects.get_or_create(user=current_user, is_paid=False)
-        print(order.__dict__, created)
         items = order.orderitem_set.all()
     else:
         items = []
@@ -70,9 +69,6 @@ def update_item(request):
     courseId = data['courseId']
     action = data['action']
 
-    print('courseid', courseId)
-    print('action', action)
-
     current_user = request.user
     course = Course.objects.get(id=courseId)
     order, created = Order.objects.get_or_create(user=current_user, is_paid=False)
@@ -80,10 +76,9 @@ def update_item(request):
     orderItem, created = OrderItem.objects.get_or_create(order=order, course=course)
 
     if action == 'add':
-        pass
-        # orderItem.quantity = (orderItem.quantity + 1)
+        orderItem.quantity = 1
     elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
+        orderItem.quantity = 0
 
     orderItem.save()
 

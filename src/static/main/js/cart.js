@@ -5,9 +5,6 @@ for(var i = 0; i < updateBtns.length; i++){
         var courseId = this.dataset.course
         var action = this.dataset.action
 
-        console.log('courseId', courseId,'action', action)
-        console.log('user', user)
-
         if (user === 'AnonymousUser'){
             console.log('Not logged in')
         }else{
