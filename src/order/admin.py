@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Cart
 
 admin.site.register(Order)
 admin.site.register(OrderItem)
-
+admin.site.register(Cart)
 # class OrderProduct_line(admin.TabularInline):
 #     model = OrderItem
 #     readonly_fields = ('user', 'course', 'product_price')

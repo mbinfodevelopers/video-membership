@@ -57,8 +57,11 @@
                               </li>
                               <li>
                                    <div class="cart-btn">
+                                       {% csrf_token %}
+                                       <input type="hidden" value="{{ single_course.id }}" class="cour_id">
 {#                                        <a class="theme_btn" href="#">افزودن به سبد</a>#}
-                                       <button data-course="{{ single_course.id }}" data-action="add" class="update-cart btn btn-outline-secondary add-btn">افزودن به سبد</button>
+{#                                       <button data-course="{{ single_course.id }}" data-action="add" class="update-cart btn btn-outline-secondary add-btn">افزودن به سبد</button>#}
+                                       <button type="button" class="btn btn-primary me-3 addToCartBtn">افزودن به سبد</button>
                                     </div>
                               </li>
                               <li>

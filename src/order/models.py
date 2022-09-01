@@ -66,3 +66,14 @@ class OrderItem(models.Model):
     # class Meta:
     #     verbose_name = 'سفارش محصول'
     #     verbose_name_plural = 'محصولات سفارش داده شده'
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_qyt = models.IntegerField(null=False, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.course.title
+
