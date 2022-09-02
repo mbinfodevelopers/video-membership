@@ -34,7 +34,7 @@
 //             location.reload()
 //             })
 // }
-console.log('salam');
+
 $('.addToCartBtn').click(function (e){
    e.preventDefault();
 
@@ -55,4 +55,25 @@ $('.addToCartBtn').click(function (e){
 
       }
    })
+});
+
+$('.delete-cart-item').click(function (e){
+   e.preventDefault();
+
+   var course_id = $('.course_id').val();
+   var token = $('input[name=csrfmiddlewaretoken]').val();
+
+   $.ajax({
+      method: "POST",
+      url: '/order/delete-cart-item',
+      data: {
+         'course_id': course_id,
+         csrfmiddlewaretoken: token
+      },
+      success: function (response) {
+         // alertify.success(response.status)
+         $('.cart-data').load(location.href + " .cart-data")
+      }
+   })
+
 });

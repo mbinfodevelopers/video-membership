@@ -27,24 +27,43 @@ def order(request):
     context['cartItems'] = cartItems
     return render(request, 'store/order.html', context)
 
-
-def cart(request):
+def viewcart(request):
     context = {}
-    if request.user.is_authenticated:
-        current_user = request.user
-
-        # return all objects from OrderItem's model
-        order, created = Order.objects.get_or_create(user=current_user, is_paid=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-
-        # if user is not authenticated (fix later)
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-
-    context['items'] = items
-    context['order'] = order
+    cart = Cart.objects.filter(user=request.user)
+    context['cart'] = cart
     return render(request, 'store/cart.html', context)
+
+def delete_cart_item(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            course_id = int(request.POST.get('course_id'))
+            if Cart.objects.filter(user=request.user, course_id=course_id):
+                cartitem = Cart.objects.get(course_id=course_id, user=request.user)
+                cartitem.delete()
+
+                return JsonResponse({'status': "Deleted Successfully"})
+        else:
+            return JsonResponse({'status': "Login to continue"})
+    return redirect('/')
+
+
+# def cart(request):
+#     context = {}
+#     if request.user.is_authenticated:
+#         current_user = request.user
+#
+#         # return all objects from OrderItem's model
+#         order, created = Order.objects.get_or_create(user=current_user, is_paid=False)
+#         items = order.orderitem_set.all()
+#     else:
+#         items = []
+#
+#         # if user is not authenticated (fix later)
+#         order = {'get_cart_total': 0, 'get_cart_items': 0}
+#
+#     context['items'] = items
+#     context['order'] = order
+#     return render(request, 'store/cart.html', context)
 
 
 def checkout(request):
