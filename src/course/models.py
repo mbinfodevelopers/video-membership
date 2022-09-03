@@ -1,11 +1,12 @@
 from django.db import models
+from django.utils import timezone
 from django.urls import reverse
 from jalali_date import datetime2jalali, date2jalali
 from account.models import Account
 from home.models import Category
 from .utils import cal_time_to_seconds
 import time
-
+from extensions.utils import jalali_converter
 
 def get_course_image_filepath(self, filename):
     return 'course/course_images/' + str(self.pk) + '/course_image.png'
@@ -17,10 +18,10 @@ def get_default_course_image():
 
 class Course(models.Model):
     STATUS = (
-        ('New Course', 'New Course'),
-        ('Course in progress', 'Course in progress'),
-        ('Course update', 'Course update'),
-        ('The course is over', 'The course is over'),
+        ('New Course', 'دوره جدید'),
+        ('Course in progress', 'دوره در حال برگزاری'),
+        ('Course update', 'دوره در حال بروز رسانی'),
+        ('The course is over', 'دوره به اتمام رسیده'),
     )
 
     title = models.CharField(max_length=150, unique=True, verbose_name=' عنوان ')
@@ -32,6 +33,7 @@ class Course(models.Model):
     image = models.ImageField(upload_to=get_course_image_filepath, blank=True, null=True, default=get_default_course_image, verbose_name='تصویر دوره ')
     status = models.CharField(max_length=25, choices=STATUS, blank=True, verbose_name=' وضعیت ')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=' دسته بندی ')
+    publish = models.DateTimeField(default=timezone.now, verbose_name='زمان انتشار')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name=' تاریخ ایجاد ')
     modify_date = models.DateTimeField(auto_now=True, verbose_name=' تاریخ آپدیت ')
     view_count = models.IntegerField(blank=True, null=True, verbose_name=' تعداد بازدید')
@@ -61,8 +63,9 @@ class Course(models.Model):
 
 
     # This Function For Get Persian date
-    def get_persian_date(self):
-        return date2jalali(self.create_date)
+    # def get_persian_date(self):
+    #     return date2jalali(self.create_date)
+    # get_persian_date.short_description = 'تاریخ ایجاد'
 
 
     # This Function For spell Price with " , "
@@ -74,9 +77,13 @@ class Course(models.Model):
 
 
     class Meta:
-        verbose_name = 'دوره',
+        verbose_name = 'دوره'
         verbose_name_plural =' دوره ها'
 
+        # for get persian date ( year,month,day)
+    def jpublish(self):
+        return jalali_converter(self.publish)
+    jpublish.short_description = 'زمان انتشار'
 
     @property
     def count_video(self):
