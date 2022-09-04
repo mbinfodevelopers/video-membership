@@ -11,7 +11,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['title', 'thumbnail', 'status', 'category_to_str']
+    list_display = ['title', 'thumbnail', 'get_persian_date', 'status', 'category_to_str']
     list_filter = ['title']
     search_fields = ['title', 'description']
     prepopulated_fields = {'slug': ('title',)}
