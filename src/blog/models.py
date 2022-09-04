@@ -62,5 +62,4 @@ class Article(models.Model):
     def category_published(self):
         return self.category.filter(status=True)
 
-
-objects = ArticleManager()
+    objects = ArticleManager()

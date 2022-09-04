@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="pt-130">
+        <main>
+            <!--page-title-area start-->
+            <section class="page-title-area d-flex align-items-end"
+                     style="background-image: url({% static '' %}assets/img/page-title-bg/01.jpg);">
+                <div class="container">
+                    <div class="row align-items-end">
+                        <div class="col-lg-12">
+                            <div class="page-title-wrapper mb-50">
+                                <h1 class="page-title mb-25">وبلاگ</h1>
+                                <div class="breadcrumb-list">
+                                    <ul class="breadcrumb">
+                                        <li><a href="index.html">خانه - صفحات -</a></li>
+                                        <li><a href="#">وبلاگ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--page-title-area end-->
+            <!-- blog-area start -->
+            <section class="blog-area">
+                <div class="blog-bg pt-150 pb-120 pt-md-100 pb-md-70 pt-xs-100 pb-xs-70">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="section-title text-center mb-60">
+                                    <h2 class="mb-25">مقالات دیپ لرن ({{ count_article }})</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% for art in articles %}
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="z-blogs mb-30">
+                                        <div class="z-blogs__thumb mb-30">
+                                            <a href="{% url 'blog:article_detail' art.slug %}"><img
+                                                    src="{{ art.thumbnail.url }}" alt="blog-img"></a>
+                                        </div>
+                                        <div class="z-blogs__content">
+                                            <h5 class="mb-25">
+{#                                                {% for cat in articles.category_published %}#}
+{#                                                    <a href="{% url 'blog:category' cat.slug %}">#{{ cat.title }}</a>#}
+{#                                                {% endfor %}#}
+                                            </h5>
+                                            <h4 class="sub-title mb-15"><a
+                                                    href="{% url 'blog:article_detail' art.slug %}">{{ art.title }}</a>
+                                            </h4>
+                                            <div class="z-blogs__meta d-sm-flex justify-content-between pt-20">
+                                                <span>تاریخ : {{ art.get_persian_date }}</span>
+                                                <span>توسط مدیریت</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 text-center mt-20 mb-30">
+                                <a href="blog-details.html" class="theme_btn">بارگذاری بیشتر</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+{% endblock content %}

@@ -6,7 +6,7 @@ from .models import Article, Category
 def all_blog(request):
     context = {
         "category": Category.objects.filter(status=True),
-        "article": Article.objects.filter(status="p"),
+        "articles": Article.objects.published(),
         "count_article": Article.objects.filter(status='p').count()
         # "category": get_object_or_404(Category, status=True)
     }
@@ -25,6 +25,6 @@ def category(request, slug):
 # Get Article Detail
 def article_detail(request, slug):
     context = {
-        "article": get_object_or_404(Article, status='p', slug=slug)
+        "article": get_object_or_404(Article, slug=slug, status='p')
     }
     return render(request, 'blog/detail_blogs.html', context)
