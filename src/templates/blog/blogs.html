@@ -47,9 +47,9 @@
                                             <button class="search-icon"><i class="far fa-search"></i></button>
                                         </div>
                                     </li>
-{#                                    <li>#}
-{#                                        <input class="theme_btn search_btn ml-35" type="submit" value="جستجو">#}
-{#                                    </li>#}
+                                    {#                                    <li>#}
+                                    {#                                        <input class="theme_btn search_btn ml-35" type="submit" value="جستجو">#}
+                                    {#                                    </li>#}
                                 </ul>
                             </div>
                         </div>
@@ -63,37 +63,40 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <div class="section-title text-center mb-60">
-                                    <h3 class="mb-25">مقالات دیپ لرن ( {{ count_article }} پست )</h3>
+                                    <h3 class="mb-25">مقالات در دسترس  ( {{ count_article }} پست )</h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            {% for article in the_articles %}
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="z-blogs mb-30">
-                                        <div class="z-blogs__thumb mb-30">
-                                            <a href="{% url 'blog:article_detail' article.slug %}"><img
-                                                    src="{{ article.thumbnail.url }}" alt="blog-img"></a>
-                                        </div>
-                                        <div class="z-blogs__content">
-                                            <h5 class="mb-25">
-                                                {#  {% for cat in articles.category_published %}#}
-                                                {#   <a href="{% url 'blog:category' cat.slug %}">#{{ cat.title }}</a>#}
-                                                {#     {% endfor %}#}
-                                            </h5>
-                                            <h4 class="sub-title mb-15"><a
-                                                    href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
-                                            </h4>
-                                            <div class="z-blogs__meta d-sm-flex justify-content-between pt-20">
-                                                <span>تاریخ : {{ art.get_persian_date }}</span>
-                                                <span>توسط مدیریت</span>
+                        {% if the_articles %}
+                            <div class="row">
+                                {% for article in the_articles %}
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="z-blogs mb-30">
+                                            <div class="z-blogs__thumb mb-30">
+                                                <a href="{% url 'blog:article_detail' article.slug %}"><img
+                                                        src="{{ article.thumbnail.url }}" alt="blog-img"></a>
+                                            </div>
+                                            <div class="z-blogs__content">
+                                                <h5 class="mb-25">
+                                                    {#  {% for cat in articles.category_published %}#}
+                                                    {#   <a href="{% url 'blog:category' cat.slug %}">#{{ cat.title }}</a>#}
+                                                    {#     {% endfor %}#}
+                                                </h5>
+                                                <h4 class="sub-title mb-15"><a
+                                                        href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
+                                                </h4>
+                                                <div class="z-blogs__meta d-sm-flex justify-content-between pt-20">
+                                                    <span>تاریخ : {{ article.get_persian_date }}</span>
+                                                    <span>توسط مدیریت</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
-
-                        </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <h3 class="mb-35 wow fadeInUp2 animated" data-wow-delay='.2s'> {{ search_query }} چیزی با این عنوان یافت نشد 😵 </h3>
+                        {% endif %}
                         {% include 'Shared/pagination.html' with queryset=the_articles custom_range=custom_range %}
                     </div>
                 </div>

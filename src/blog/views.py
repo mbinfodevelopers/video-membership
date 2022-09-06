@@ -7,8 +7,6 @@ def all_blog(request):
     the_articles, search_query = article_Search(request)
     custom_range, the_articles = paginatorArticles(request, the_articles, 2)
     context = {
-        # "category": Category.objects.filter(status=True),
-        # "articles": Article.objects.published(),
         "count_article": Article.objects.filter(status='p').count(),
         "the_articles": the_articles,
         "custom_range": custom_range,

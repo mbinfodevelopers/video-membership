@@ -34,6 +34,7 @@ def article_Search(request):
         search_query = request.GET.get('search_query')
     article = Article.objects.distinct().filter(
         Q(title__icontains=search_query) |
-        Q(description__icontains=search_query)
+        Q(description__icontains=search_query),
+        status='p'
     )
     return article, search_query
