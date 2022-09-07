@@ -68,19 +68,26 @@ def delete_cart_item(request):
 
 def checkout(request):
     context = {}
-    if request.user.is_authenticated:
-        current_user = request.user
-        order, created = Order.objects.get_or_create(user=current_user, is_paid=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
+    cartitem = Cart.objects.filter(user=request.user)
+    context['cartitem'] = cartitem
 
-        # if user is not authenticated (fix later)
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-
-    context['items'] = items
-    context['order'] = order
     return render(request, 'store/checkout.html', context)
+
+# def checkout(request):
+#     context = {}
+#     if request.user.is_authenticated:
+#         current_user = request.user
+#         order, created = Order.objects.get_or_create(user=current_user, is_paid=False)
+#         items = order.orderitem_set.all()
+#     else:
+#         items = []
+#
+#         # if user is not authenticated (fix later)
+#         order = {'get_cart_total': 0, 'get_cart_items': 0}
+#
+#     context['items'] = items
+#     context['order'] = order
+#     return render(request, 'store/checkout.html', context)
 
 
 # def update_item(request):
@@ -127,3 +134,24 @@ def addtocart(request):
             return JsonResponse({'status': "Login to continue"})
     return redirect('/')
 
+
+def placeorder(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        neworder, created = Order.objects.get_or_create(user=current_user, is_paid=False)
+
+        neworderitem = Cart.objects.filter(user=current_user)
+        for item in neworderitem:
+            OrderItem.objects.create(
+                order=neworder,
+                course=item.course,
+                quantity=1
+            )
+
+        # To clear user's Cart
+        Cart.objects.filter(user=current_user).delete()
+
+        messages.success(request, "Your order has benn places successfully")
+
+    return redirect('/')

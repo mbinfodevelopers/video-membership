@@ -7,13 +7,11 @@
 <div class="row" style="margin: 40px">
 		<div class="col-lg-6">
 			<div class="box-element" id="form-wrapper">
-				<form id="form">
+				<form action="{% url 'order:placeorder' %}" method="POST">
+                    {% csrf_token %}
 					<div id="user-info">
 						<div class="form-field">
-							<input required class="form-control" type="text" name="name" placeholder="Name..">
-						</div>
-						<div class="form-field">
-							<input required class="form-control" type="email" name="email" placeholder="Email..">
+							<input class="form-control" type="text" name="order_note" placeholder="Order Note ...">
 						</div>
 					</div>
 
@@ -39,7 +37,8 @@
 					</div>
 
 					<hr>
-					<input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+
+                    <button type="submit" class="btn btn-success btn-block"> Place Order</button>
 				</form>
 			</div>
 
@@ -52,13 +51,16 @@
 
 		</div>
 
-		<div class="col-lg-6">
+
+
+
+            <div class="col-lg-6">
 			<div class="box-element">
 				<a class="btn btn-outline-dark" href="{% url 'order:cart' %}">&#x2190; Back to Cart</a>
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
-				{% for item in items %}
+				{% for item in cartitem %}
 				<div class="cart-row">
 					<div style="flex:2"><img width="100px" height="100px" class="row-image" src="{{item.course.image.url}}"></div>
 					<div style="flex:2"><p>{{item.course.title}}</p></div>
@@ -66,10 +68,11 @@
 					<div style="flex:1"><p>{{item.quantity}}</p></div>
 				</div>
 				{% endfor %}
-				<h5>Items:   {{order.get_cart_items}}</h5>
-				<h5>Total:   {{order.get_cart_total|floatformat:2}}</h5>
+{#				<h5>Items:   {{order.get_cart_items}}</h5>#}
+{#				<h5>Total:   {{order.get_cart_total|floatformat:2}}</h5>#}
 			</div>
 		</div>
+
 	</div>
 </section>
 
