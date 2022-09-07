@@ -1,15 +1,17 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from .models import Article, Category
-from .utils import paginatorArticles, article_Search
+from .utils import paginatorArticles, article_search
 
 # Get All Blogs WithOut Category
 def all_blog(request):
-    the_articles, search_query = article_Search(request)
-    custom_range, the_articles = paginatorArticles(request, the_articles, 2)
+    the_articles, search_query = article_search(request)
+    custom_range, the_articles = paginatorArticles(request, the_articles, 1)
     context = {
         "count_article": Article.objects.filter(status='p').count(),
         "the_articles": the_articles,
         "custom_range": custom_range,
+
     }
     return render(request, 'blog/blogs.html', context)
 

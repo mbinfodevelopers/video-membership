@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html  lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -41,5 +41,6 @@
 </main>
 {% block footer %} {% include 'base/footer.html' %} {% endblock %}
 {% include 'base/footer_js.html' %}
+<script src="{% static 'assets/js/main_search.js' %}"></script>
 </body>
 </html>

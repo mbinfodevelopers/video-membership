@@ -28,7 +28,7 @@ def paginatorArticles(request, articles, results):
     return custom_range, articles
 
 
-def article_Search(request):
+def article_search(request):
     search_query = ''
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
