@@ -31,9 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'azbankgateways',
+    'jalali_date',
 
     # own apps
-    'jalali_date',
     'account',
     'course.apps.CourseConfig',
     'home.apps.HomeConfig',
@@ -179,7 +180,28 @@ STATICFILES_DIRS = [
 ]
 
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MERCHANT_CODE = 'fc5b3f9b-7089-4cc5-a03c-fd90ac73c249'
+
+AZ_IRANIAN_BANK_GATEWAYS = {
+   'GATEWAYS': {
+       'ZARINPAL': {
+           'MERCHANT_CODE': MERCHANT_CODE,
+           'SANDBOX': 1,  # 0 disable, 1 active
+       },
+   },
+   'IS_SAMPLE_FORM_ENABLE': True, # اختیاری و پیش فرض غیر فعال است
+   'DEFAULT': 'ZARINPAL',
+   'CURRENCY': 'IRR', # اختیاری
+   'TRACKING_CODE_QUERY_PARAM': 'tc', # اختیاری
+   'TRACKING_CODE_LENGTH': 16, # اختیاری
+   'SETTING_VALUE_READER_CLASS': 'azbankgateways.readers.DefaultReader', # اختیاری
+   'BANK_PRIORITIES': [
+       'ZARINPAL',
+   ],
+}
