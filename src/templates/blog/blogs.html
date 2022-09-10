@@ -14,8 +14,8 @@
                                 <h1 class="page-title mb-25">وبلاگ</h1>
                                 <div class="breadcrumb-list">
                                     <ul class="breadcrumb">
-                                        <li><a href="index.html">خانه - صفحات -</a></li>
-                                        <li><a href="#">وبلاگ</a></li>
+                                        <li><a href="{% url 'home:home_page' %}">صفحه ی اصلی</a></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                                 </h4>
                                                 <div class="z-blogs__meta d-sm-flex justify-content-between pt-20">
                                                     <span>تاریخ : {{ article.get_persian_date }}</span>
-                                                    <span>توسط مدیریت</span>
+                                                    <span> توسط {{ get_user }}</span>
                                                 </div>
                                             </div>
                                         </div>

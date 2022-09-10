@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from extensions.utils import jalali_converter
 from django.utils.html import format_html
+from account.models import Account
 
 
 class Category(models.Model):
@@ -34,6 +35,7 @@ class Article(models.Model):
     )
     title = models.CharField(max_length=200, verbose_name='عنوان مقاله')
     slug = models.SlugField(max_length=100, verbose_name='آدرس مقاله')
+    author = models.ForeignKey(Account, null=True, on_delete=models.SET_NULL, related_name='articles', verbose_name='نویسنده مقاله')
     category = models.ManyToManyField(Category, related_name='the_articles', verbose_name='دسته بندی ')
     description = models.TextField(verbose_name='محتوای مقاله')
     thumbnail = models.ImageField(upload_to=get_Article_image_filepath, blank=True, null=True, default=get_default_article_image, verbose_name='تصویر مقاله ')

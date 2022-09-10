@@ -9,11 +9,11 @@
               <div class="row align-items-end">
                   <div class="col-lg-12">
                       <div class="page-title-wrapper mb-50">
-                         <h1 class="page-title mb-25">جزئیات وبلاگ</h1>
+                         <h1 class="page-title mb-25">جزئیات مقاله</h1>
                          <div class="breadcrumb-list">
                             <ul class="breadcrumb">
-                                <li><a href="index.html">خانه - صفحات -</a></li>
-                                <li><a href="#">جزئیات وبلاگ</a></li>
+                                <li><a href="{% url 'blog:all_blog' %}">همه ی مقالات</a></li>
+
                             </ul>
                          </div>
                     </div>
@@ -28,53 +28,27 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="blog-details-box mb-45">
-                            <h2>باز کردن امکانات در کالج ها و دانشگاه ها</h2>
+                            <h2>{{ article_detail.title}}</h2>
                             <ul class="blogs__meta mb-30">
                                <li><span class="blog-author">توسط مدیریت</span></li>
-                               <li><span><img src="{% static '' %}assets/img/icon/material-date-range.svg" alt="mate-date"> 2 دی 1400</span></li>
-                               <li><span><img src="{% static '' %}assets/img/icon/material-access-time.svg" alt="mate-date"> 03</span></li>
-                               <li> <span><img src="{% static '' %}assets/img/icon/material-comment.svg" alt="mate-date"> 5 دقیقه</span></li>
-                               <li>
-                                   <div class="social-media blog-details-social">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
-                                        <a href="#"><i class="fab fa-youtube"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                    </div>
-                                </li>
+                               <li><span><img src="{% static '' %}assets/img/icon/material-date-range.svg" alt="mate-date"> {{ article_detail.get_persian_date}}</span></li>
                             </ul>
-                            <img class="img-fluid blog-details-img mb-35" src="{% static '' %}assets/img/blog/16.jpg" alt="blog-details-img">
-                            <h3 class="blog-details-title mb-30">پذیرش دانشگاه ها ممکن است با کنترل های اضطراری روبرو شود</h3>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
+                            <img class="img-fluid blog-details-img mb-35" src="{{ article_detail.thumbnail.url }}">
+                            <h3 class="blog-details-title mb-30">{{ article_detail.title }}</h3>
+
                         </div>
 
                         <div class="blog-details-text mb-30">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                            <p> {{ article_detail.description }} </p>
                         </div>
                         <div class="blog-details-text row gx-2 mb-45">
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                               <div class="blog-details-img-box mb-30">
-                                    <img class="img-fluid" src="{% static '' %}assets/img/blog/17.jpg" alt="">
-                               </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                               <div class="blog-details-img-box mb-30">
-                                    <img class="img-fluid" src="{% static '' %}assets/img/blog/18.jpg" alt="">
-                               </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                               <div class="blog-details-img-box mb-30">
-                                    <img class="img-fluid" src="{% static '' %}assets/img/blog/18.jpg" alt="">
-                               </div>
-                            </div>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. .</p>
                         </div>
 
 
                         <div class="row">
-                            <div class="col-lg-12 text-center mb-40">
-                                <button class="theme_btn comment_btn">مشاهده نظرات (05)</button>
-                            </div>
+{#                            <div class="col-lg-12 text-center mb-40">#}
+{#                                <button class="theme_btn comment_btn">مشاهده نظرات (05)</button>#}
+{#                            </div>#}
                         </div>
                         <div class="comments-area">
                             <ul class="latest-commmnet">
