@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from course.models import Course
 from order.models import Order, OrderItem, Cart
 from django.http import JsonResponse
-import json
-from django.contrib import messages
 
 
 def order(request):
@@ -22,16 +20,16 @@ def order(request):
     # fix later number of cart items
     print('cartItems', cartItems)
 
-
-
     context['cartItems'] = cartItems
     return render(request, 'store/order.html', context)
 
-def viewcart(request):
+
+def view_cart(request):
     context = {}
     cart = Cart.objects.filter(user=request.user)
     context['cart'] = cart
     return render(request, 'store/cart.html', context)
+
 
 def delete_cart_item(request):
     if request.method == 'POST':
@@ -68,10 +66,11 @@ def delete_cart_item(request):
 
 def checkout(request):
     context = {}
-    cartitem = Cart.objects.filter(user=request.user)
-    context['cartitem'] = cartitem
+    cart_item = Cart.objects.filter(user=request.user)
+    context['cart_item'] = cart_item
 
     return render(request, 'store/checkout.html', context)
+
 
 # def checkout(request):
 #     context = {}
@@ -116,7 +115,7 @@ def checkout(request):
 #     return JsonResponse('Item was added', safe=False)
 
 
-def addtocart(request):
+def add_to_cart(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
             course_id = int(request.POST.get('course_id'))
@@ -132,26 +131,4 @@ def addtocart(request):
                 return JsonResponse({'status': 'No such course found'})
         else:
             return JsonResponse({'status': "Login to continue"})
-    return redirect('/')
-
-
-def placeorder(request):
-    current_user = request.user
-
-    if request.method == 'POST':
-        neworder, created = Order.objects.get_or_create(user=current_user, is_paid=False)
-
-        neworderitem = Cart.objects.filter(user=current_user)
-        for item in neworderitem:
-            OrderItem.objects.create(
-                order=neworder,
-                course=item.course,
-                quantity=1
-            )
-
-        # To clear user's Cart
-        Cart.objects.filter(user=current_user).delete()
-
-        messages.success(request, "Your order has benn places successfully")
-
     return redirect('/')

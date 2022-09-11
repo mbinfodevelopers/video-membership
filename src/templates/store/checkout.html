@@ -7,8 +7,6 @@
 <div class="row" style="margin: 40px">
 		<div class="col-lg-6">
 			<div class="box-element" id="form-wrapper">
-				<form action="{% url 'order:placeorder' %}" method="POST">
-                    {% csrf_token %}
 					<div id="user-info">
 						<div class="form-field">
 							<input class="form-control" type="text" name="order_note" placeholder="Order Note ...">
@@ -38,21 +36,12 @@
 
 					<hr>
 
-                    <button type="submit" class="btn btn-success btn-block"> Place Order</button>
-				</form>
+                    <button type="submit" class="btn btn-success btn-block" onclick="location.href='{% url 'go-to-gateway' %}'"> Checkout</button>
 			</div>
 
 			<br>
-			<div class="box-element hidden" id="payment-info">
-				<small>Paypal Options</small>
-				<!--<button id="make-payment">Make payment</button>-->
-				<div id="paypal-button-container"></div>
-			</div>
 
 		</div>
-
-
-
 
             <div class="col-lg-6">
 			<div class="box-element">
@@ -60,7 +49,7 @@
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
-				{% for item in cartitem %}
+				{% for item in cart_item %}
 				<div class="cart-row">
 					<div style="flex:2"><img width="100px" height="100px" class="row-image" src="{{item.course.image.url}}"></div>
 					<div style="flex:2"><p>{{item.course.title}}</p></div>
