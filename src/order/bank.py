@@ -11,8 +11,14 @@ from django.contrib import messages
 
 def go_to_gateway_view(request):
 
-    # خواندن مبلغ از هر جایی که مد نظر است
-    amount = 50000
+    # to get the total price of items in cart
+    cart_items = Cart.objects.filter(user=request.user)
+    total_price = 0
+    if cart_items:
+        for item in cart_items:
+            total_price += item.course.price
+
+    amount = total_price
 
     factory = bankfactories.BankFactory()
     try:
@@ -60,17 +66,22 @@ def callback_gateway_view(request):
     # if payment is successful
     if bank_record.is_success:
 
+        # to get the total price of items in cart
+        cart_items = Cart.objects.filter(user=request.user)
+        total_price = 0
+        if cart_items:
+            for item in cart_items:
+                total_price += item.course.price
+
         # to create order object
         new_order = Order()
         new_order.user = current_user
         new_order.payment = new_payment
-        # new_order.total_price = ???
-        # new_order.ip = ???
+        new_order.total_price = total_price
         new_order.tracking_code = bank_record.tracking_code
         new_order.save()
 
-
-        # to create order items form cart items
+        # to create order items from cart's item
         new_order_item = Cart.objects.filter(user=current_user)
         for item in new_order_item:
             OrderItem.objects.create(

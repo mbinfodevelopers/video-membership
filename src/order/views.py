@@ -126,7 +126,7 @@ def add_to_cart(request):
                 else:
                     course_qyt = 1
                     Cart.objects.create(user=request.user, course_id=course_id, course_qyt=course_qyt)
-                    return JsonResponse({'status': 'Course addes successfuly'})
+                    return JsonResponse({'status': 'Course added successfuly'})
             else:
                 return JsonResponse({'status': 'No such course found'})
         else:

@@ -4,16 +4,6 @@ from .forms import AccountAuthenticationForm, RegistrationForm, AccountUpdateFor
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 from django.conf import settings
-from django.core import files
-
-
-# def home_view(request):
-#     queryset = Account.objects.all()
-#     dic = {
-#         "queryset": queryset
-#     }
-#     return render(request, "shared/index.html", dic)
-
 
 
 def profile_view(request, *args, **kwargs):
@@ -27,7 +17,6 @@ def profile_view(request, *args, **kwargs):
         'user': request.user
     }
     return render(request, 'account/profile.html', context)
-
 
 
 def register_view(request, *args, **kwargs):
@@ -47,7 +36,7 @@ def register_view(request, *args, **kwargs):
             destination = kwargs.get("next")
             if destination:
                 return redirect(destination)
-            return redirect('course:home_view')
+            return redirect('course:courses')
         else:
             context['registration_form'] = form
 
@@ -55,7 +44,6 @@ def register_view(request, *args, **kwargs):
         form = RegistrationForm()
         context['registration_form'] = form
     return render(request, 'account/register.html', context)
-
 
 
 def login_view(request, *args, **kwargs):
