@@ -18,7 +18,7 @@ def go_to_gateway_view(request):
         for item in cart_items:
             total_price += item.course.price
 
-    amount = total_price
+    amount = total_price * 10
 
     factory = bankfactories.BankFactory()
     try:
