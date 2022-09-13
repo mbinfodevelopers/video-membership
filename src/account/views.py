@@ -65,7 +65,6 @@ def login_view(request, *args, **kwargs):
     context = {
         "login_form": form
     }
-
     return render(request, "account/login.html", context)
 
 
