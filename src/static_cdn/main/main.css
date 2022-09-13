@@ -1,0 +1,112 @@
+.user-profile-header img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.register-link {
+    margin-top: 30px;
+    width: 100%;
+    height: 100px;
+    /*background-color: blue;*/
+    text-align: center;
+
+}
+
+.register-link a {
+     color: #0a53be;
+}
+
+.register-link ul li {
+    margin: 15px;
+}
+
+.register-link ul li a:hover {
+    color: #0b0b0b;
+}
+
+/*.container-video {*/
+/*    display: grid;*/
+/*    grid-template-columns: 2fr 1fr;*/
+/*    gap: 15px;*/
+/*    align-items: flex-start;*/
+/*    padding: 5px 5%;*/
+/*}*/
+
+.container-video .main-video {
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.container-video .main-video video {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.container-video .main-video .title {
+    color: #333;
+    font-size: 23px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.container-video .video-list {
+    background: #fff;
+    border-radius: 5px;
+    /*border-bottom: 1px solid #1a1e21;*/
+    height: 370px;
+    overflow-y: scroll;
+}
+.container-video .video-list::-webkit-scrollbar {
+    width: 7px;
+}
+.container-video .video-list::-webkit-scrollbar-track {
+    background: #666;
+    border-radius: 50px;
+}
+.container-video .video-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 50px;
+}
+
+.container-video .video-list .vid video {
+    width: 70px;
+    border-radius: 5px;
+}
+
+.container-video .video-list .vid {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f7f7f7;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+.container-video .video-list .vid:hover {
+    background: #eee;
+}
+
+.container-video .video-list .vid.active {
+    background: #8dcaf2;
+}
+
+.container-video .video-list .vid.active .title {
+    color: #fff;
+}
+
+.container-video .video-list .vid .title {
+    color: #333;
+    font-size: 10px;
+
+}
+
+.container .title-vid {
+    font-size: 15px;
+    margin-right: 20px;
+}

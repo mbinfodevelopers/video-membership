@@ -59,7 +59,7 @@ class Course(models.Model):
 
     # This Function For Get Category And Course Url
     def get_url(self):
-        return reverse('course_detail', args=[self.category.slug, self.slug])
+        return reverse('course:course_detail', args=[self.category.slug, self.slug])
 
 
     # This Function For Get Persian date

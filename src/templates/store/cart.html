@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section style="margin: 40px" class="feature-course pt-150 pb-130 pt-md-95 pb-md-80 pt-xs-95 pb-xs-8 cart-data">
+    <h1>Cart</h1>
+    <br>
+    <h5>تعداد سبد خرید<span> ... </span></h5>
+    <h5>مجموع خرید<span> .... </span></h5>
+       {% if cart %}
+            {% for item in cart %}
+                <input type="hidden" class="course_id" value="{{ item.course.id }}">
+                {% csrf_token %}
+                <img width="100px" height="100px" src="{{ item.course.image.url }}">
+                <h5>عنوان</h5>{{ item.course.title }}
+                <h5>قیمت</h5>{{ item.course.price }} <br>
+{#                <img class="update-cart" data-course="{{ item.course.id }}" data-action="remove" src="{% static '' %}assets/img/icon/remove_item.png"/>#}
+                <button class="delete-cart-item">remove</button>
+
+                <p>---------------------</p>
+            {% endfor %}
+        {% else %}
+            <h1>Your cart is empty</h1>
+        {% endif %}
+    <br>
+    <a class="btn btn-success" href="{% url 'order:checkout' %}">Checkout</a>
+</section>
+
+<script src="{% static 'main/js/cart.js' %}" type="text/javascript"></script>
+{% endblock %}

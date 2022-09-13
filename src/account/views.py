@@ -4,16 +4,6 @@ from .forms import AccountAuthenticationForm, RegistrationForm, AccountUpdateFor
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 from django.conf import settings
-from django.core import files
-
-
-# def home_view(request):
-#     queryset = Account.objects.all()
-#     dic = {
-#         "queryset": queryset
-#     }
-#     return render(request, "shared/index.html", dic)
-
 
 
 def profile_view(request, *args, **kwargs):
@@ -27,7 +17,6 @@ def profile_view(request, *args, **kwargs):
         'user': request.user
     }
     return render(request, 'account/profile.html', context)
-
 
 
 def register_view(request, *args, **kwargs):
@@ -47,7 +36,7 @@ def register_view(request, *args, **kwargs):
             destination = kwargs.get("next")
             if destination:
                 return redirect(destination)
-            return redirect('course:home_view')
+            return redirect('course:courses')
         else:
             context['registration_form'] = form
 
@@ -57,11 +46,10 @@ def register_view(request, *args, **kwargs):
     return render(request, 'account/register.html', context)
 
 
-
 def login_view(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
-        return redirect("course:home_view")
+        return redirect("course:courses")
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -70,7 +58,7 @@ def login_view(request, *args, **kwargs):
             user = authenticate(email=email, password=raw_password)
             if user:
                 login(request, user)
-                return redirect('course:home_view')
+                return redirect('course:courses')
     else:
         form = AccountAuthenticationForm()
 
@@ -83,7 +71,7 @@ def login_view(request, *args, **kwargs):
 
 def logout_view(request):
     logout(request)
-    return redirect("course:home_view")
+    return redirect("course:courses")
 
 
 def edit_account_view(request, *args, **kwargs):
@@ -99,7 +87,7 @@ def edit_account_view(request, *args, **kwargs):
             if form.is_valid():
                 form.save()
                 new_username = form.cleaned_data['username']
-                return redirect("course:home_view")
+                return redirect("course:courses")
             else:
                 form = AccountUpdateForm(request.POST, instance=request.user,
                     initial={
