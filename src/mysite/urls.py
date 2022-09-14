@@ -13,7 +13,7 @@ urlpatterns = [
     path('courses/', include('course.urls')),
     path('', include('home.urls')),
     path('order/', include('order.urls')),
-    path('order/', include('blog.urls')),
+    path('blogs/', include('blog.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 
     # bankgetways urls
