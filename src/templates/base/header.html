@@ -19,7 +19,7 @@
                                             <ul class="dropdown-menu submenu mega-menu__sub-menu-box" aria-labelledby="navbarDropdown">
                                             <li><a href="{% url 'course:courses' %}"><span><img src="{% static '' %}assets/img/icon/icon12.svg" alt=""></span> همه ی دوره ها</a></li>
                                                 {% for category in links %}
-                                                <li><a href="{{ category.get_url }}"><span><img src="{% static '' %}assets/img/icon/icon7.svg" alt=""></span> {{ category.category_name }} </a></li>
+                                                <li><a href="{{ 'course:category.get_url' }}"><span><img src="{% static '' %}assets/img/icon/icon7.svg" alt=""></span> {{ category.category_name }} </a></li>
                                                 {% endfor %}
                                             </ul>
                                         </li>

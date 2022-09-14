@@ -16,7 +16,7 @@
                 <div class="portfolio-menu mb-30">
                     <button class="gf_btn active" data-filter='*'>همه</button>
                     {% for category in links %}
-                    <a href="{{ category.get_url }}" class="gf_btn" data-filter='.cat1'>{{ category.category_name }}</a>
+                    <a href="{{ 'course:category.get_url' }}" class="gf_btn" data-filter='.cat1'>{{ category.category_name }}</a>
                     {% endfor %}
                 </div>
             </div>
