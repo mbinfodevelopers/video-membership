@@ -4,8 +4,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.html import format_html
-
 from extensions.utils import jalali_converter
+
 
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
