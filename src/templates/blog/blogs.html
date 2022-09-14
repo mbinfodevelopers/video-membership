@@ -97,7 +97,7 @@
                         {% else %}
                             <h3 class="mb-35 wow fadeInUp2 animated" data-wow-delay='.2s'> {{ search_query }} چیزی با این عنوان یافت نشد 😵 </h3>
                         {% endif %}
-                        {% include 'Shared/pagination.html' with queryset=the_articles custom_range=custom_range %}
+                        {% include 'shared/pagination.html' with queryset=the_articles custom_range=custom_range %}
                     </div>
                 </div>
             </section>
