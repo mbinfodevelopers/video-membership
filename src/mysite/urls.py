@@ -3,17 +3,22 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from azbankgateways.urls import az_bank_gateways_urls
+from order.bank import go_to_gateway_view, callback_gateway_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('account.urls')),
     path('courses/', include('course.urls')),
-    path('', include('blog.urls')),
     path('', include('home.urls')),
+    path('order/', include('order.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 
+    # bankgetways urls
+    path('bankgateways/', az_bank_gateways_urls()),
+    path('go-to-gateway/', go_to_gateway_view, name='go-to-gateway'),
+    path('callback-gateway/', callback_gateway_view),
 
 # Password reset links (ref: https://github.com/django/django/blob/master/django/contrib/auth/views.py)
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'),
