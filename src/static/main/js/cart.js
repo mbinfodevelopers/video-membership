@@ -55,6 +55,7 @@ $('.addToCartBtn').click(function (e){
 
       }
    })
+      location.reload()
 });
 
 $('.delete-cart-item').click(function (e){
@@ -72,8 +73,7 @@ $('.delete-cart-item').click(function (e){
       },
       success: function (response) {
          // alertify.success(response.status)
-         $('.cart-data').load(location.href + " .cart-data")
       }
    })
-
+      location.reload()
 });
