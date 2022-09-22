@@ -4282,6 +4282,9 @@ fieldset:disabled .btn {
     display: flex;
     padding-left: 0;
     list-style: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
 }
 .page-link {
     position: relative;

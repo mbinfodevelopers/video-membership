@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
+from django.utils.html import format_html
+from extensions.utils import jalali_converter
 
 
 class MyAccountManager(BaseUserManager):
@@ -41,20 +44,25 @@ def get_default_profile_image():
 
 
 class Account(AbstractBaseUser):
-    email = models.EmailField(verbose_name="email", max_length=60, unique=True)
-    username = models.CharField(max_length=30, unique=True)
-    date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
-    last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
-    is_admin = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
-    profile_image = models.ImageField(max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)
-    hide_email = models.BooleanField(default=True)
+    email = models.EmailField(max_length=60, unique=True, verbose_name='email')
+    username = models.CharField(max_length=30, unique=True, verbose_name='نام و نام خانوادگی')
+    time_joined = models.DateTimeField(default=timezone.now, verbose_name='زمان ثبت نام')
+    date_joined = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now=True)
+    is_admin = models.BooleanField(default=False, verbose_name='آیا ادمین است')
+    is_active = models.BooleanField(default=True, verbose_name='حساب کاربر فعال است')
+    is_staff = models.BooleanField(default=False, verbose_name='اجازه ورود به پنل ادمین')
+    is_superuser = models.BooleanField(default=False, verbose_name='آیا سوپر یوزر است')
+    profile_image = models.ImageField(max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image, verbose_name='تصویر کاربر')
+    hide_email = models.BooleanField(default=True, verbose_name='مخفی بودن ایمیل کاربر')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = MyAccountManager()
+
+    class Meta:
+        verbose_name = 'کاربر'
+        verbose_name_plural = 'کاربران'
 
     def __str__(self):
         return self.username
@@ -72,31 +80,51 @@ class Account(AbstractBaseUser):
         # Simplest possible answer: Yes, always
         return True
 
+    def when_user_joined(self):
+       return jalali_converter(self.date_joined)
+    when_user_joined.short_description = 'تاریخ ثبت نام'
+
+    def userAccount_image(self):
+        return format_html("<img width=90 height=70 style='border-radius: 5px' src='{}'>".format(self.profile_image.url))
+    userAccount_image.short_description = "عکس کاربر"
+
 
 class Skill(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, verbose_name='مهارت')
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'مهارت'
+        verbose_name_plural = 'مهارت ها'
+
 
 class Teacher(models.Model):
-    teacher = models.ForeignKey(Account, on_delete=models.CASCADE)
-    teacher_name = models.CharField(max_length=100, blank=False, null=False)
-    about_teacher = models.TextField(blank=True, null=True)
-    skills = models.ManyToManyField(Skill, blank=True)
-    linkedin_account = models.URLField(max_length=250, blank=True, null=True)
-    instagram_account = models.URLField(max_length=250, blank=True, null=True)
-    website = models.URLField(max_length=250, blank=True, null=True)
-    twitter_account = models.URLField(max_length=250, blank=True, null=True)
-    stackoverflow_account = models.URLField(max_length=250, blank=True, null=True)
+    teacher = models.ForeignKey(Account, on_delete=models.CASCADE, verbose_name='استاد مربوطه')
+    teacher_name = models.CharField(max_length=100, blank=False, null=False, verbose_name='نام استاد')
+    about_teacher = models.TextField(blank=True, null=True, verbose_name='درباره ی استاد')
+    skills = models.ManyToManyField(Skill, blank=True, verbose_name='مهارت های استاد')
+    linkedin_account = models.URLField(max_length=250, blank=True, null=True, verbose_name='اکانت لینکدین')
+    instagram_account = models.URLField(max_length=250, blank=True, null=True, verbose_name='اکانت اینستاگرام')
+    website = models.URLField(max_length=250, blank=True, null=True, verbose_name='آدرس وب سایت')
+    twitter_account = models.URLField(max_length=250, blank=True, null=True, verbose_name='اکانت توتیتر')
+    stackoverflow_account = models.URLField(max_length=250, blank=True, null=True, verbose_name='اکانت استک آورفلو')
 
     def __str__(self):
         return self.teacher.username
 
+    class Meta:
+        verbose_name = 'استاد'
+        verbose_name_plural = 'استاتید'
+
 
 class Student(models.Model):
-    student = models.ForeignKey(Account, on_delete=models.CASCADE)
+    student = models.ForeignKey(Account, on_delete=models.CASCADE, verbose_name='داتشجو')
+
+    class Meta:
+        verbose_name = 'دانشجو'
+        verbose_name_plural = 'دانشجویان'
 
     def __str__(self):
         return self.student.username
