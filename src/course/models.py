@@ -122,7 +122,7 @@ class Video(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'ویدیو',
+        verbose_name = 'ویدیو'
         verbose_name_plural ='بخش ویدیو ها'
 
 
@@ -146,5 +146,5 @@ class Comment(models.Model):
         return self.comment
 
     class Meta:
-        verbose_name = 'نظر',
+        verbose_name = 'نظر'
         verbose_name_plural ='بخش نظرات'
