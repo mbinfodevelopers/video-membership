@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="feature-course pt-150 pb-130 pt-md-95 pb-md-80 pt-xs-95 pb-xs-8">
+    <div class="container">
+            <div class="alert alert-danger" role="alert">
+      پرداخت با شکست مواجه شده است.<br>
+            اگر پول کم شده است ظرف مدت ۴۸ ساعت پول به حساب شما بازخواهد گشت.<br>
+            کد پیگیری: <span>{{ tracking_code }}</span>
+
+    </div>
+    </div>
+</section>
+
+{% endblock %}

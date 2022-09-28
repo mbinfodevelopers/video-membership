@@ -4,7 +4,7 @@ from django.urls import reverse
 from azbankgateways import bankfactories, models as bank_models, default_settings as settings
 from azbankgateways.exceptions import AZBankGatewaysException
 from payment.models import Payment
-from django.db.models import Q
+from django.shortcuts import render
 from order.models import Order, OrderItem, Cart
 from django.contrib import messages
 
@@ -41,8 +41,11 @@ def go_to_gateway_view(request):
 
 
 def callback_gateway_view(request):
+    context = {}
     current_user = request.user
     tracking_code = request.GET.get(settings.TRACKING_CODE_QUERY_PARAM, None)
+
+    context['tracking_code'] = tracking_code
 
     if not tracking_code:
         logging.debug("این لینک معتبر نیست.")
@@ -95,7 +98,12 @@ def callback_gateway_view(request):
 
         messages.success(request, "Your order has benn places successfully")
 
-        return HttpResponse("پرداخت با موفقیت انجام شد.")
+        # if payment was success
+        return render(request, 'order/success_payment.html', context)
 
-    # پرداخت موفق نبوده است. اگر پول کم شده است ظرف مدت ۴۸ ساعت پول به حساب شما بازخواهد گشت.
-    return HttpResponse("پرداخت با شکست مواجه شده است. اگر پول کم شده است ظرف مدت ۴۸ ساعت پول به حساب شما بازخواهد گشت.")
+    # if payment was failure
+    else:
+        # To clear user's Cart
+        Cart.objects.filter(user=current_user).delete()
+
+    return render(request, 'order/failure_payment.html', context)
