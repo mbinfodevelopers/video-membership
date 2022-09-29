@@ -1,12 +1,13 @@
 import logging
 from django.http import Http404, HttpResponse
-from django.urls import reverse
+from django.core.mail import send_mail
 from azbankgateways import bankfactories, models as bank_models, default_settings as settings
 from azbankgateways.exceptions import AZBankGatewaysException
 from payment.models import Payment
 from django.shortcuts import render
 from order.models import Order, OrderItem, Cart
 from django.contrib import messages
+from django.conf import settings as mysettings
 
 
 def go_to_gateway_view(request):
@@ -96,9 +97,16 @@ def callback_gateway_view(request):
         # To clear user's Cart
         Cart.objects.filter(user=current_user).delete()
 
-        messages.success(request, "Your order has benn places successfully")
+        messages.success(request, "Your order has been places successfully")
 
         # if payment was success
+        send_mail(
+            subject='test',
+            message='test',
+            from_email=mysettings.EMAIL_HOST_USER,
+            recipient_list=['khademmilad@gmail.com'], # user's Email (request.user.email)
+            fail_silently=False
+        )
         return render(request, 'order/success_payment.html', context)
 
     # if payment was failure

@@ -184,7 +184,6 @@ STATICFILES_DIRS = [
 ]
 
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -192,6 +191,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MERCHANT_CODE = 'fc5b3f9b-7089-4cc5-a03c-fd90ac73c249'
 
+
+# Configuring payment
 AZ_IRANIAN_BANK_GATEWAYS = {
    'GATEWAYS': {
        'ZARINPAL': {
@@ -209,3 +210,13 @@ AZ_IRANIAN_BANK_GATEWAYS = {
        'ZARINPAL',
    ],
 }
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Configuring email for development
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'info.developers.mb@gmail.com'
+EMAIL_HOST_PASSWORD = 'snap123@Q'
+EMAIL_USER_TLS = True
+EMAIL_USER_SSL = False
