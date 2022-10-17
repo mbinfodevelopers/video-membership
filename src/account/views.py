@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Account
 from .forms import AccountAuthenticationForm, RegistrationForm, AccountUpdateForm
@@ -46,10 +47,11 @@ def register_view(request, *args, **kwargs):
     return render(request, 'account/register.html', context)
 
 
+@login_required(login_url='account:login')
 def login_view(request, *args, **kwargs):
-    user = request.user
-    if user.is_authenticated:
-        return redirect("course:courses")
+    # user = request.user
+    # if user.is_authenticated:
+    #     return redirect("course:courses")
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
