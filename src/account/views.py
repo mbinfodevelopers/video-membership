@@ -15,7 +15,7 @@ def profile_view(request, *args, **kwargs):
     except:
         return HttpResponse('something went wrong.')
     context = {
-        'user': request.user
+        'user': request.user,
     }
     return render(request, 'account/profile.html', context)
 
