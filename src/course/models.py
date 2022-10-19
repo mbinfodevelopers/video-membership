@@ -56,17 +56,14 @@ class Course(models.Model):
 
         super(Course, self).save(*args, **kwargs)
 
-
     # This Function For Get Category And Course Url
     def get_url(self):
         return reverse('course:course_detail', args=[self.category.slug, self.slug])
-
 
     # This Function For Get Persian date
     # def get_persian_date(self):
     #     return date2jalali(self.create_date)
     # get_persian_date.short_description = 'تاریخ ایجاد'
-
 
     # This Function For spell Price with " , "
     @property
@@ -74,7 +71,6 @@ class Course(models.Model):
         price = self.price
         convert = format(price, ",")
         return convert
-
 
     class Meta:
         verbose_name = 'دوره'

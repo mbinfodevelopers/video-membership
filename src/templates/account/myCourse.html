@@ -2,8 +2,6 @@
 
 {% block content %}
 
-
-
     <section class="feature-course pt-150 pb-130 pt-md-95 pb-md-80 pt-xs-95 pb-xs-8">
 
         {#  <img src="{{ user.profile_image.url }}" alt="" width="100px" height="100px">#}
@@ -40,7 +38,7 @@
 
                         </div>
                         <div class="panel-body bio-graph-info">
-                                          <h1>دوره های رایگان</h1>
+                                          <h1>دوره های خریداری شده من</h1>
                             <div class="row">
                                 <section class="content">
                                     <div class="container-fluid">
@@ -63,7 +61,7 @@
                                                                 <th>وضعیت</th>
                                                                 <th>تاریخ ثبت نام</th>
                                                             </tr>
-                                                            {% for course in free_course %}
+                                                            {% for course in my_course %}
                                                             <tr>
                                                                 <td>{{ course.title }}</td>
                                                                 <td><span class="badge badge-primary">تایید شده</span>

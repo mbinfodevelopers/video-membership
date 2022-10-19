@@ -1,8 +1,8 @@
 <ul class="nav nav-pills nav-stacked">
               <li><a href="{% url 'account:profile' user.id %}"> <i class="fa fa-user"></i> حساب کاربری</a></li>
               <li><a href="{% url 'account:edit_account_view' user.id %}"> <i class="fa fa-edit"></i> ویرایش حساب کاربری</a></li>
-              <li><a href="{% url 'account:get_courses' %}"> <i class="fa fa-edit"></i> دوره های رایگان من</a></li>
-              <li><a href="#"> <i class="fa fa-edit"></i>  دوره های پولی من</a></li>
+              <li><a href="{% url 'account:free_courses' %}"> <i class="fa fa-edit"></i> دوره های رایگان من</a></li>
+              <li><a href="{% url 'account:money_courses' %}"> <i class="fa fa-edit"></i>  دوره های پولی من</a></li>
               <li><a href="#"> <i class="fa fa-edit"></i>  سوالات من</a></li>
               <li><a href="#"> <i class="fa fa-edit"></i> کیف پول من</a></li>
               <li><a href="#"> <i class="fa fa-edit"></i> فاکتور ها</a></li>

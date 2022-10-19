@@ -117,10 +117,18 @@ def edit_account_view(request, *args, **kwargs):
     return render(request, "account/edit_account.html", context)
 
 
-def get_courses(request):
+def free_courses(request):
     free_course = Course.objects.filter(is_free=True)
-
     context = {
         'free_course': free_course,
     }
     return render(request, 'account/free_course.html', context)
+
+
+def money_courses(request):
+    my_course = Course.objects.filter(status=True)
+    context = {
+        'my_course': my_course,
+    }
+
+    return render(request, 'account/myCourse.html', context)
