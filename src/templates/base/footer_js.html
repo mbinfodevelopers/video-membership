@@ -20,3 +20,15 @@
 <script src="{% static '' %}assets/js/jquery.easypiechart.js"></script>
 <script src="{% static '' %}assets/js/plugins.js"></script>
 <script src="{% static '' %}assets/js/main.js"></script>
+
+<!-- alertify -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+<script>
+    alertify.set('notifier','position', 'bottom-right');
+    {% for msg in messages %}
+        alertify.success('{{ msg }}');
+    {% endfor %}
+
+
+</script>

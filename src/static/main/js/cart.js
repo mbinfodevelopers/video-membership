@@ -51,7 +51,7 @@ $('.addToCartBtn').click(function (e){
       dataType: "",
       success: function (response) {
          console.log(response);
-         // alertify.success(response.status)
+         alertify.success(response.status)
 
       }
    })
