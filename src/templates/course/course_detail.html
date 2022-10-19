@@ -52,7 +52,11 @@
                           <ul class="cart-list-tag d-sm-inline-flex align-items-center mb-50">
                               <li>
                                   <div class="price-list">
-                                      <h5><span>ت123.65</span> <b class="sub-title">تومان {{ single_course.get_price }}</b></h5>
+                                      {% if single_course.is_free %}
+                                        <h5>کاملا رایگان</h5>
+                                      {% else %}
+                                          <h5><span>ت123.65</span> <b class="sub-title">تومان {{ single_course.get_price }}</b></h5>
+                                      {% endif %}
                                   </div>
                               </li>
                               <li>

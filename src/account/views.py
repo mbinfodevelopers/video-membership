@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+
+from course.models import Course
 from .models import Account
 from .forms import AccountAuthenticationForm, RegistrationForm, AccountUpdateForm
 from django.contrib.auth import login, authenticate, logout
@@ -76,9 +78,8 @@ def logout_view(request):
     return redirect("course:courses")
 
 
+@login_required(login_url='account:login')
 def edit_account_view(request, *args, **kwargs):
-    if not request.user.is_authenticated:
-        return redirect("account:login")
     user_id = kwargs.get("user_id")
     account = Account.objects.get(pk=user_id)
     if account.pk != request.user.pk:
@@ -114,3 +115,12 @@ def edit_account_view(request, *args, **kwargs):
     context['form'] = form
     context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
     return render(request, "account/edit_account.html", context)
+
+
+def get_courses(request):
+    free_course = Course.objects.filter(is_free=True)
+
+    context = {
+        'free_course': free_course,
+    }
+    return render(request, 'account/free_course.html', context)
