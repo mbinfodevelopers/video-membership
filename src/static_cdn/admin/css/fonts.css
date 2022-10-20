@@ -1,20 +1,8 @@
 @font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/Roboto-Bold-webfont.woff');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/Roboto-Regular-webfont.woff');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/Roboto-Light-webfont.woff');
-    font-weight: 300;
-    font-style: normal;
+    font-family: 'IRANSans';
+    src: local('IRANSans'),
+    url('../fonts/IRANSansWeb_Medium.eot') format('eot'),
+    url('../fonts/IRANSansWeb_Medium.ttf') format('ttf'),
+    url('../fonts/IRANSansWeb_Medium.woff') format('woff'),
+    url('../fonts/IRANSansWeb_Medium.woff2') format('woff2');
 }

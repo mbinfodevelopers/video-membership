@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------
 
     Template Name: Zoomy - E-learning HTML5 Template
-    Author: 
+    Author:
     Version: 1.0
 
 -----------------------------------------------------------------------------------
@@ -15,7 +15,7 @@
     04. common
     05. overlay
     06. header
-    07. breadcrumb 
+    07. breadcrumb
     08. mobile-menu
     09. search
     10. custom-animation
@@ -1014,16 +1014,7 @@ section-title
   line-height: 44px;
   display: inline-block;
 }
-#cart-total {
-  display: block;
-  text-align: center;
-  color: #fff;
-  background-color: red;
-  width: 20px;
-  height: 25px;
-  border-radius: 50%;
-  font-size: 14px;
-}
+
 .mega-menu ul.mega-menu__sub-menu-box {
   width: 900px !important;
   padding: 30px 30px 15px !important;
@@ -4289,7 +4280,7 @@ input.main-search-input:-ms-input-placeholder {
   background: 0;
   color: #FF723A;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1;
   font-family: "Manrope", sans-serif;
   font-weight: 500;
@@ -4298,7 +4289,7 @@ input.main-search-input:-ms-input-placeholder {
   position: relative;
   background-color: rgba(255, 114, 58, 0.1);
   border-radius: 40px;
-  padding: 19px 39px;
+  padding: 14px 19px;
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
@@ -4964,8 +4955,8 @@ input.main-search-input:-ms-input-placeholder {
   color: #1B212F;
   font-size: 20px;
   border-bottom: 1px solid rgba(164, 157, 157, 0.2);
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .learn-list {

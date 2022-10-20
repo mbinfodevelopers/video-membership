@@ -8,6 +8,7 @@ from django.contrib import messages
 def view_cart(request):
     context = {}
     cart = Cart.objects.filter(user=request.user)
+    messages.success(request, 'cart')
     context['cart'] = cart
     return render(request, 'store/cart.html', context)
 
