@@ -49,11 +49,11 @@ def register_view(request, *args, **kwargs):
     return render(request, 'account/register.html', context)
 
 
-@login_required(login_url='account:login')
+# @login_required(login_url='account:login')
 def login_view(request, *args, **kwargs):
-    # user = request.user
-    # if user.is_authenticated:
-    #     return redirect("course:courses")
+    user = request.user
+    if user.is_authenticated:
+        return redirect("course:courses")
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -78,7 +78,7 @@ def logout_view(request):
     return redirect("course:courses")
 
 
-@login_required(login_url='account:login')
+# @login_required(login_url='account:login')
 def edit_account_view(request, *args, **kwargs):
     user_id = kwargs.get("user_id")
     account = Account.objects.get(pk=user_id)
