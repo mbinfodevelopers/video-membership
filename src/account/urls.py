@@ -10,6 +10,6 @@ urlpatterns = [
     path('profile/dashboard/<user_id>/', views.profile_view, name='profile'),
     path('profile/editprofile/<user_id>/', views.edit_account_view, name='edit_account_view'),
     path('profile/free_course/', views.free_courses, name='free_courses'),
-    path('profile/my_course/', views.money_courses, name='money_courses'),
+    path('profile/my_course/', views.purchase_courses, name='purchase_courses'),
 
 ]

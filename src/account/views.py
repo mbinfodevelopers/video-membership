@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-
+from order.models import Order, OrderItem
 from course.models import Course
 from .models import Account
 from .forms import AccountAuthenticationForm, RegistrationForm, AccountUpdateForm
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 from django.conf import settings
+from django.db.models import Q
 
 
 def profile_view(request, *args, **kwargs):
@@ -125,10 +126,14 @@ def free_courses(request):
     return render(request, 'account/free_course.html', context)
 
 
-def money_courses(request):
-    my_course = Course.objects.filter(status=True)
-    context = {
-        'my_course': my_course,
-    }
+def purchase_courses(request):
+    context = {}
+    user = request.user
 
+    orderitem = OrderItem.objects.filter(Q(order__user=user) & Q(order__payment__status='تکمیل شده')).values_list('course_id', flat=True)
+    if orderitem:
+        purchase_courses = Course.objects.filter(id__in=orderitem)
+        print('purchase_courses', purchase_courses)
+
+        context['purchase_courses'] = purchase_courses
     return render(request, 'account/myCourse.html', context)
