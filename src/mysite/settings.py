@@ -189,7 +189,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MERCHANT_CODE = 'fc5b3f9b-7089-4cc5-a03c-fd90ac73c249'
+MERCHANT_CODE = ''
 
 
 # Configuring payment
