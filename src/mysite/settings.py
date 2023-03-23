@@ -123,18 +123,12 @@ INTERNAL_IPS = ['127.0.0.1']
 
 
 DATABASES = {
-
     'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'video_membership',
-        'USER': 'mbdevelopers',
-        'PASSWORD': 'snap123@Q',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -216,7 +210,7 @@ AZ_IRANIAN_BANK_GATEWAYS = {
 # Configuring email for development
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'info.developers.mb@gmail.com'
-EMAIL_HOST_PASSWORD = 'snap123@Q'
+EMAIL_HOST_USER = 'khademmilad@gmail.com'
+EMAIL_HOST_PASSWORD = '**************'
 EMAIL_USER_TLS = True
 EMAIL_USER_SSL = False
