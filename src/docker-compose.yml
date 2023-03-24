@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  backend:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - db_data:/app/db
+
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/app
+    command: npm run serve
+
+volumes:
+  db_data:
