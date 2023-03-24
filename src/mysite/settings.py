@@ -18,7 +18,7 @@ DEBUG = True
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During development only
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'myhostname.com']
 
 
 # Application definition
@@ -124,8 +124,12 @@ INTERNAL_IPS = ['127.0.0.1']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'postgres',
+        'USER':'postgres',
+        'PASSWORD':'postgres',
+        'HOST':'db',
+        'PORT':5432
     }
 }
 

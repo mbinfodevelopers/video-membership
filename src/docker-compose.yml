@@ -1,23 +1,29 @@
-version: '3'
-
+version: "3.9"
 services:
-  backend:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    ports:
-      - "8000:8000"
+  db:
+    image: postgres
+    container_name: rabinweb_db
     volumes:
-      - db_data:/app/db
-
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
   frontend:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    build: ./frontend
+    container_name: frontend
     ports:
       - "8080:8080"
+    depends_on:
+      - backend
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
     volumes:
-      - ./frontend:/app
-    command: npm run serve
-
+      - ./backend/data:/app/data
 volumes:
-  db_data:
+  db-data:
