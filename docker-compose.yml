@@ -5,10 +5,8 @@ services:
     container_name: rabinweb_db
     volumes:
       - db-data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+    env_file:
+      - .env
   # frontend:
   #   build: ./frontend
   #   container_name: frontend
@@ -26,6 +24,8 @@ services:
     command: python manage.py runserver 0.0.0.0:9000
     ports:
       - "9000:9000"
+    env_file:
+      - .env
     depends_on:
     - db
 volumes:
