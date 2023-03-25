@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    container_name: rabinweb_db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+  # frontend:
+  #   build: ./frontend
+  #   container_name: frontend
+  #   # volumes:
+  #   #   - frontend:/frontend
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+      # - backend
+  django_app:
+    build: .
+    container_name: django_app_rabinweb
+    volumes:
+      - ./src:/app
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+    - db
+volumes:
+  db-data:
