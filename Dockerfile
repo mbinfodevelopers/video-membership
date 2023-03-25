@@ -37,7 +37,7 @@ COPY . .
 #     && rm -rf /var/lib/apt/lists/*
 
 # Expose port 8000 for the Django app
-EXPOSE 8000
+EXPOSE 9000
 
 # ENV PATH="/app/node_modules/.bin:$PATH"
 

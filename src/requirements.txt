@@ -1,5 +1,6 @@
 asgiref==3.5.2
 attrs==22.1.0
+psycopg2-binary
 az-iranian-bank-gateways==1.6.18
 cached-property==1.5.2
 certifi==2022.6.15
