@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and Deploy Docker Compose Project
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,3 +24,14 @@ jobs:
         with:
           push: true
           tags: khademmilad/rabinweb:latest
+
+      - name: Deploy Docker Compose Project
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            cd cd ernte-am-don/
+            git pull origin main
+            docker-compose up --build -d
