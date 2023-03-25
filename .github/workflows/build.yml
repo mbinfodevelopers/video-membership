@@ -29,8 +29,8 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
         env:
-          DOCKERHUB_REPO: ${{ env.DOCKERHUB_REPO }}
-          DOCKERHUB_TAG: ${{ env.DOCKERHUB_TAG }}
+          DOCKERHUB_REPO: khademmilad/rabinweb
+          DOCKERHUB_TAG: latest
 
         with:
           push: true
