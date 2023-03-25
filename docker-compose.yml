@@ -7,7 +7,7 @@ services:
       - db-data:/var/lib/postgresql/data
     env_file:
       - .env
-  # frontend:
+  # frontend: some change for testing
   #   build: ./frontend
   #   container_name: frontend
   #   volumes:
