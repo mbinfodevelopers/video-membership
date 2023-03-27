@@ -1,0 +1,48 @@
+name: Build and Deploy Docker Compose Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Load environment variables
+        run: |
+          echo "Loading environment variables..."
+          set -a
+          . ./.env
+          set +a
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        env:
+          DOCKERHUB_REPO: khademmilad/rabinweb
+          DOCKERHUB_TAG: latest
+
+        with:
+          push: true
+          tags: khademmilad/rabinweb:latest
+
+      - name: Deploy Docker Compose Project
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            cd ernte-am-don/
+            git pull origin main
+            docker-compose up --build -d

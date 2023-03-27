@@ -18,7 +18,7 @@ DEBUG = True
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During development only
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -115,26 +115,23 @@ AUTH_USER_MODEL = 'account.Account'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-INTERNAL_IPS = ['127.0.0.1']
+# INTERNAL_IPS = ['127.0.0.1']
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-
 DATABASES = {
-
     'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'video_membership',
-        'USER': 'mbdevelopers',
-        'PASSWORD': 'snap123@Q',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
         'PORT': '5432',
     }
-
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -157,9 +154,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'fa-ir'
+# LANGUAGE_CODE = 'fa-ir'
 
-TIME_ZONE = 'Asia/Tehran'
+# TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -214,9 +211,9 @@ AZ_IRANIAN_BANK_GATEWAYS = {
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Configuring email for development
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'info.developers.mb@gmail.com'
-EMAIL_HOST_PASSWORD = 'snap123@Q'
-EMAIL_USER_TLS = True
-EMAIL_USER_SSL = False
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'khademmilad@gmail.com'
+# EMAIL_HOST_PASSWORD = '**************'
+# EMAIL_USER_TLS = True
+# EMAIL_USER_SSL = False
