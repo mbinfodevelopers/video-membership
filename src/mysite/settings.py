@@ -154,9 +154,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'fa-ir'
+# LANGUAGE_CODE = 'fa-ir'
 
-TIME_ZONE = 'Asia/Tehran'
+# TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -211,9 +211,9 @@ AZ_IRANIAN_BANK_GATEWAYS = {
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Configuring email for development
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'khademmilad@gmail.com'
-EMAIL_HOST_PASSWORD = '**************'
-EMAIL_USER_TLS = True
-EMAIL_USER_SSL = False
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'khademmilad@gmail.com'
+# EMAIL_HOST_PASSWORD = '**************'
+# EMAIL_USER_TLS = True
+# EMAIL_USER_SSL = False
