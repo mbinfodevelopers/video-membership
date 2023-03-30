@@ -1,12 +1,33 @@
-Make sure that you have Docker installed on your system.
+# My Awesome Project
 
-    docker --version
+This is a sample project that demonstrates the use of Docker Compose to set up a multi-container environment for a web application. The project consists of a Django app that displays the current time and weather conditions for a specified location, as well as an Nginx server that acts as a reverse proxy for the app.
 
-To install Docker Compose on Linux, you can follow the steps below:
-- sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+## Installation
 
-Set the correct permissions on the Docker Compose binary:
-    sudo chmod +x /usr/local/bin/docker-compose
+To run this project locally, you will need to have the following tools installed:
 
-Finally:
-    docker --version
+- Docker
+- Docker Compose
+
+## Once you have these tools installed, you can clone the project repository to your local machine:
+
+```
+git clone https://github.com/mbinfodevelopers/video-membership.git
+
+```
+
+Next, navigate to the project directory and build the Docker images using the following command:
+
+```
+docker-compose build
+```
+Once the images have been built, you can start the containers using the following command:
+```
+docker-compose up -d
+
+```
+
+This will start the containers in detached mode, allowing you to continue using the terminal. You can then access the web app by opening a web browser and navigating to http://localhost.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more information.
